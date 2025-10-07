@@ -41,6 +41,7 @@ yarn-error.log*
 .env*
 .env
 .env.SST.*
+!.env.example
 
 # vercel
 .vercel
