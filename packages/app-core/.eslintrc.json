@@ -1,0 +1,43 @@
+// Minimal config
+/*
+{
+  "extends": "next/core-web-vitals", // Extend Next.js recommended config
+  "rules": {
+    // Add any custom ESLint rules here if you need to override or add specific rules
+    // Example:
+    // "no-unused-vars": "warn",
+    // "react/jsx-uses-react": "off",
+    // "react/react-in-jsx-scope": "off"
+  }
+}
+*/
+
+// Original config
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"], //plugins are used to extend the core rules with custom rules
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"], //extends are used to extend the core rules with custom rules
+  "rules": {
+    "no-console": ["off"],
+    "no-unused-vars": ["off"],
+    "prefer-const": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "no-var": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "warn",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
+    "@typescript-eslint/no-explicit-any": ["off"]
+    //"@typescript-eslint/no-require-imports": "warn",
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}

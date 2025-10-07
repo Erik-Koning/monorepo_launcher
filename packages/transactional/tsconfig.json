@@ -1,0 +1,31 @@
+{
+  "extends": "@shared/typescript-config/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"],
+      "@/root/*": ["../../*"],
+      "@/app-core/*": ["./*"],
+      "@/public/*": ["../../public/*"],
+      "@/packages/*": ["../*"],
+      "@common/*": ["../common/*"],
+      "@/components/*": ["../common/src/components/*"],
+      "@/hooks/*": ["../common/src/hooks/*"],
+      "@/lib/*": ["../common/src/lib/*"],
+      "@/types/*": ["../common/src/types/*"],
+      "@/server/*": ["../common/src/server/*"],
+      "@/styles/*": ["../common/src/styles/*"],
+      "@/ui/*": ["../common/src/components/ui/*"],
+      "@/imgs/*": ["../common/src/public/imgs/*"],
+      "@/fonts/*": ["../common/src/public/fonts/*"],
+      "@/utils/*": ["../common/src/utils/*"],
+      "@/contexts/*": ["../common/src/contexts/*"],
+      "@/workers/*": ["../common/src/workers/*"],
+      "@/app/*": ["src/app"],
+      "@/test/*": ["./test/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

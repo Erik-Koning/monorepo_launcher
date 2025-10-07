@@ -1,0 +1,57 @@
+# Run Prettier on all files in the src directory
+npx prettier --write ./packages/
+
+#sst deploy
+For new deployments, errors saying same cname is used, need to deploy cloudfront distribution not just disable
+Adjust which cloudfronts the urls point to with new CF distribution via the DNS zone editor
+
+# requests
+## of type NextRequest
+req from getForm Request {
+  method: 'POST',
+  url: 'http://localhost:3000/api/getForm',
+  headers: Headers {
+    accept: 'application/json, text/plain, */*',
+    'accept-encoding': 'gzip, deflate, br, zstd',
+    'accept-language': 'en-US,en;q=0.9',
+    connection: 'keep-alive',
+    'content-length': '2',
+    'content-type': 'application/json',
+    cookie: 'next-auth.csrf-token=874b83b0e75ba83f0387547759688368a4d16582a866ff210e36d98e8e26046f%7Cc3194660fb9a974782b783814d84b92a439470093f7b1355368f24d74f6baac4; next-auth.callback-url=http%3A%2F%2Flocalhost%3A3000%2Fentries; next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..ZHWtOLGW6bfmKoZr.vtXFqhk0nUWViaAvdkWg8oCAEZrCFRsaJ_7gg7Re-3gXRP4NNV7P1H__Q3OpREZhiRUNFnp-e9Bf0Q4W4WHtMEHn5EQ7hSeUSKiaBAYigmoeosgZF9ywj7YIxAO_lvgAdGVNYh4VqKlP0An7VEtPiW-Mf-gVy29nDqLkLFPuye8_GsiCOFkLUX5x5kLP3foOCo86HmpyJ5bU.hIwkHcFILmXf8p3EUefNIQ',
+    host: 'localhost:3000',
+    origin: 'http://localhost:3000',
+    referer: 'http://localhost:3000/entries',
+    'sec-ch-ua': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'x-forwarded-for': '::1',
+    'x-forwarded-host': 'localhost:3000',
+    'x-forwarded-port': '3000',
+    'x-forwarded-proto': 'http'
+  },
+  destination: '',
+  referrer: 'about:client',
+  referrerPolicy: '',
+  mode: 'cors',
+  credentials: 'same-origin',
+  cache: 'default',
+  redirect: 'follow',
+  integrity: '',
+  keepalive: false,
+  isReloadNavigation: false,
+  isHistoryNavigation: false,
+  signal: AbortSignal { aborted: false }
+}
+
+
+# TODO Code security tests
+getAllForms route has client requesting api code, and server side rendering code. To be sure to not leak any sensitive data, we need to test the following:
+- All code that does not have validateUser function is titled with "SSR" suffix
+- We test that "SSR" suffixed functions are only called from server side page.tsx files, ie - not "use client"; marked files
+
+# dev environment
+See cmd+shift+p to search for "settings json" This is where tailwind intellisense, special commands and more can be set

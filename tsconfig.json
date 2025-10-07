@@ -1,0 +1,13 @@
+/*{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/packages/*": ["./packages/*"],
+      "@common/*": ["./packages/common/src/*"],
+      "@/app-core/*": ["./packages/app-core/*"],
+      "@/functions/*": ["./packages/functions/*"]
+    }
+  }
+}
+*/

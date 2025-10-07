@@ -1,0 +1,6 @@
+[submodule "mfa-sst"]
+	path = mfa-sst
+	url = ./mfa-sst
+[submodule "AWS-MFA-ENV"]
+	path = AWS-MFA-ENV
+	url = https://github.com/Erik-Koning/AWS-MFA-ENV.git

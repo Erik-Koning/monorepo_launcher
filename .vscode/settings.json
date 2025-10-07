@@ -1,0 +1,49 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "tailwindCSS.classAttributes": ["class", ".*[cC]lassName", ".*[cC]lassName:", ".*ClassNames", "ngClass", "class:list"],
+  "tailwindCSS.experimental.classRegex": [
+    ["Classes \\=([^;]*);", "'([^']*)'"],
+    ["Classes \\=([^;]*);", "\"([^\"]*)\""],
+    ["Classes \\=([^;]*);", "\\`([^\\`]*)\\`"],
+    ["\\= cva([^;]*);", "'([^']*)'"],
+    ["\\= cva([^;]*);", "\"([^\"]*)\""],
+    ["\\= cva([^;]*);", "\\`([^\\`]*)\\`"],
+    ["\\b\\w*[cC]lassName\\b\\s*:\\s*'([^']*)'"],
+    ["\\b\\w*[cC]lassName\\b\\s*:\\s*\"([^\"]*)\""],
+    ["\\b\\w*[cC]lassName\\b\\s*:\\s*\\`([^\\`]*)\\`"]
+  ],
+  //"css.styleSheets": ["src/**/*"],
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.scrollLineDown10",
+      "sequence": [
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown",
+        "scrollLineDown"
+      ]
+    },
+    {
+      "command": "multiCommand.scrollLineUp10",
+      "sequence": [
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp",
+        "scrollLineUp"
+      ]
+    }
+  ]
+}

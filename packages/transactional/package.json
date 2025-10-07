@@ -1,0 +1,23 @@
+{
+  "name": "@shared/transactional",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "with-env": "dotenv -e ../../.env --",
+    "dev": "pnpm with-env email dev"
+  },
+  "devDependencies": {
+    "react-email": "4.0.7"
+  },
+  "dependencies": {
+    "@shared/tailwind-config": "workspace:*",
+    "@shared/typescript-config": "workspace:*",
+    "@react-email/components": "0.0.36",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}

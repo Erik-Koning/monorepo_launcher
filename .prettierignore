@@ -1,0 +1,9 @@
+node_modules
+# Ignore artifacts:
+build
+coverage
+.github
+.next
+.open-next
+.sst
+.vscode
