@@ -4,7 +4,7 @@ import { Heading } from "@common/components/ui/Heading";
 import { FlattenedControl } from "@common/utils/securityControlsHelper";
 import { Button } from "./Button";
 import { cn } from "../../lib/utils";
-import { CheckCircleRounded } from "@mui/icons-material";
+import { CheckCircle } from "lucide-react";
 
 interface SecurityControlCardProps {
   control: FlattenedControl;
@@ -63,7 +63,7 @@ export const SecurityControlCard: React.FC<SecurityControlCardProps> = ({
       </Heading>
       {checkMark && (
         <div className="absolute flex items-start bottom-0 right-0 border-b border-l border-border/0 pl-0.5 pr-0.5 py-0.5 rounded-bl-[8px]">
-          <CheckCircleRounded className="text-green opacity-100" sx={{ fontSize: 14 }} />
+          <CheckCircle className="h-3.5 w-3.5 text-green opacity-100" style={{ fontSize: 14 }} />
         </div>
       )}
     </Card>

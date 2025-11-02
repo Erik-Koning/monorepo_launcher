@@ -1,13 +1,13 @@
 "use client";
 
-import { getElemSizeULByRef, useItemSizeUL } from '../../hooks/useItemSizeUL';
-import { cn } from '../../lib/utils';
+import { getElemSizeULByRef, useItemSizeUL } from "../../hooks/useItemSizeUL";
+import { cn } from "../../lib/utils";
 import React, { ReactElement, RefObject, forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button, ButtonProps } from "./Button";
-import useMousePosition from '../../hooks/useMousePosition';
-import { ElevatorSharp } from "@mui/icons-material";
-import { sumElements } from '../../utils/objectManipulation';
-import { getEventsClosestToRefSide } from '../../utils/mouseEvents';
+import useMousePosition from "../../hooks/useMousePosition";
+import { ArrowUpDown } from "lucide-react";
+import { sumElements } from "../../utils/objectManipulation";
+import { getEventsClosestToRefSide } from "../../utils/mouseEvents";
 import { TabsTrigger } from "./Tabs";
 
 export interface HoverBarMenuArrayProps extends ButtonProps {

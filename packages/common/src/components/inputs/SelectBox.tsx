@@ -20,7 +20,7 @@ import {
   renameObjectKeysFoundInArray,
   unDef,
 } from "../../utils/objectManipulation";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { X } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
 import { Edit } from "lucide-react";
@@ -1001,7 +1001,7 @@ export const SelectBox = React.forwardRef<HTMLInputElement, SelectBoxProps>(
                             disabled={undefined}
                             onClick={removeValueFromState(option.value)}
                           >
-                            <CloseOutlinedIcon className="rounded-full p-0.5 text-secondary-dark hover:bg-border" sx={{ fontSize: 22 }} />
+                            <X className="h-5.5 w-5.5 rounded-full p-0.5 text-secondary-dark hover:bg-border" style={{ fontSize: 22 }} />
                           </Button>
                         )}
                       </div>

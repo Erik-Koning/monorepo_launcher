@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, Text, View, StyleSheet, Rect, Svg, Image } from "@react-pdf/renderer";
-import { formatPhoneNumberAmerica, hexToRgb } from '../../utils/stringManipulation';
-import { getFileExtension } from '../../utils/fileParsing';
-import { svgToDataUri } from '../../utils/imageFormats';
-import { isValidImageUrl } from '../../lib/validations/validations';
+import { formatPhoneNumberAmerica, hexToRgb } from "../../utils/stringManipulation";
+import { getFileExtension } from "../../utils/fileParsing";
+import { svgToDataUri } from "../../utils/imageFormats";
+import { isValidImageUrl } from "../../lib/validations/validations";
 
 const styles = StyleSheet.create({
   container: {
@@ -91,8 +91,8 @@ interface MyComponentProps {
   titleLeft: string;
   logoLeft?: string;
   titleRight: string;
-  patientName: string;
-  patientDOB: string;
+  clientName: string;
+  clientDOB: string;
   subject: string;
   content?: Record<string, any>;
   officeFields?: Record<string, any>;

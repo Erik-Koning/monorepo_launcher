@@ -1,10 +1,9 @@
 import React from "react";
 import { forwardRef } from "react";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
-import CallMadeOutlinedIcon from "@mui/icons-material/CallMadeOutlined";
-import DoneAllOutlinedIcon from "@mui/icons-material/DoneAllOutlined";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/ui/tooltip';
+import { ArrowUpRight, CheckCheck } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip";
 
 const SentVsReadVariants = cva("flex items-center gap-x-2 text-xs text-gray-600", {
   variants: {
@@ -53,13 +52,13 @@ export const SentVsRead = forwardRef<HTMLDivElement, SentVsReadProps>(
             <div {...props} className={cn(SentVsReadVariants({ variant, size }), className)} ref={ref}>
               {showSent && (
                 <span className={cn("flex items-center gap-x-0.5", sentClassName)}>
-                  <CallMadeOutlinedIcon fontSize="inherit" />
+                  <ArrowUpRight className="h-4 w-4" style={{ fontSize: "inherit" }} />
                   <span>{effectiveNumSent}</span>
                 </span>
               )}
               {showRead && (
                 <span className={cn("flex items-center gap-x-0.5", readClassName)}>
-                  <DoneAllOutlinedIcon fontSize="inherit" />
+                  <CheckCheck className="h-4 w-4" style={{ fontSize: "inherit" }} />
                   <span>{numRead}</span>
                 </span>
               )}

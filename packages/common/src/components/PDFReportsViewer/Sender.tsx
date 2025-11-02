@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Text, View, StyleSheet, Rect, Svg } from "@react-pdf/renderer";
-import { formatPhoneNumberAmerica, hexToRgb } from '../../utils/stringManipulation';
+import { formatPhoneNumberAmerica, hexToRgb } from "../../utils/stringManipulation";
 
 const styles = StyleSheet.create({
   container: {
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
 });
 
 interface MyComponentProps {
-  patientName: string;
-  patientDOB: string;
+  clientName: string;
+  clientDOB: string;
   subject: string;
   content?: Record<string, any>;
   officeFields?: Record<string, any>;
   ownerFields?: Record<string, any>;
 }
 
-const Sender: React.FC<MyComponentProps> = ({ patientName, patientDOB, subject, officeFields, ownerFields }) => {
+const Sender: React.FC<MyComponentProps> = ({ clientName, clientDOB, subject, officeFields, ownerFields }) => {
   return (
     <View style={{ width: "100%" }}>
       <View style={[styles.container, { alignItems: "center", paddingTop: 15 }]}>

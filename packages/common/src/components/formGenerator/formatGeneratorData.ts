@@ -1,10 +1,10 @@
-import { emailRegex } from '../../lib/validations/email';
-import { OptionalField, GeneratorData, Section, TemplateData, BaseField } from '../../types/formGenerator';
-import { DateFormat, defaultDateFormat, getDateStringMMDDYYYY, getStringDateFormatFromDate } from '../../utils/dateManipulation';
-import { removeComments } from '../../utils/fileParsing';
-import { atLeafObject, flattenObjectRetainValues, getObjectValueByPath } from '../../utils/objectManipulation';
-import { getFirstRegexMatchArray, getBeforeMatch, CustomRegExpExecArray, createCustomRegExpExecArray } from '../../utils/regex';
-import { replacePlaceholders } from '../../utils/replacePlaceholders';
+import { emailRegex } from "../../lib/validations/email";
+import { OptionalField, GeneratorData, Section, TemplateData, BaseField } from "../../types/formGenerator";
+import { DateFormat, defaultDateFormat, getDateStringMMDDYYYY, getStringDateFormatFromDate } from "../../utils/dateManipulation";
+import { removeComments } from "../../utils/fileParsing";
+import { atLeafObject, flattenObjectRetainValues, getObjectValueByPath } from "../../utils/objectManipulation";
+import { getFirstRegexMatchArray, getBeforeMatch, CustomRegExpExecArray, createCustomRegExpExecArray } from "../../utils/regex";
+import { replacePlaceholders } from "../../utils/replacePlaceholders";
 import {
   generateAllKeyVariationsByRemovingSubstrings,
   isWithinCharacterDistance,
@@ -14,7 +14,7 @@ import {
   stringHasLetterOrNumber,
   stringIsWhitespace,
   strPossiblyAName,
-} from '../../utils/stringManipulation';
+} from "../../utils/stringManipulation";
 import { cloneDeep } from "lodash";
 
 export const referencedFieldsRegex = new RegExp(/\{[A-Za-z0-9]+_[A-Za-z0-9]+[^}]*\}/g);
@@ -371,14 +371,14 @@ export const getAllReferencedFieldDetails = (
 
     if (
       input.includes(
-        "Thank you for the referral of {patient_firstName} {patient_lastName}. It was a pleasure to meet with {patient_pronouns</1>} and I appreciate the opportunity to be involved in {patient_pronouns</2> === Hers ? Her : {patient_pronouns</2> === Theirs ? Their : {patient_pronouns</2>}}} treatment. Please see below for summary of our appointment. More information can be found on additional pages/attachments as applicable."
+        "Thank you for the referral of {client_firstName} {client_lastName}. It was a pleasure to meet with {client_pronouns</1>} and I appreciate the opportunity to be involved in {client_pronouns</2> === Hers ? Her : {client_pronouns</2> === Theirs ? Their : {client_pronouns</2>}}} treatment. Please see below for summary of our appointment. More information can be found on additional pages/attachments as applicable."
       )
     ) {
     }
 
     //get the first available referencedField
     if (allowNestedFields) {
-      //find a synthetic "regex" match via a nested field compatible search, works to find "{patient_pronouns</2> === Hers ? Her : {patient_pronouns</2> === Theirs ? Their : {patient_pronouns</2>}}}" for example
+      //find a synthetic "regex" match via a nested field compatible search, works to find "{client_pronouns</2> === Hers ? Her : {client_pronouns</2> === Theirs ? Their : {client_pronouns</2>}}}" for example
       match = parseNestedFields(input.substring(i), undefined, undefined, undefined, enforceStrictReferencedField);
     } else {
       match = getFirstRegexMatchArray(input.substring(i), regexArray ?? referencedFieldsRegex);

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, shallowEqual } from "react-redux";
-import { CloudOffOutlined, FilterDramaOutlined, CloudDoneOutlined, AutorenewOutlined } from "@mui/icons-material";
+import { CloudOff, Cloud, RefreshCw, Check } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
-import { useDispatch } from "react-redux";
-import { getHumanFriendlyDateDifference } from '../../utils/getHumanFriendlyDateDifference';
+import { getHumanFriendlyDateDifference } from "../../utils/getHumanFriendlyDateDifference";
 import { Button } from "./Button";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 
 export const CloudStateIndicator = () => {
-  const dispatch = useDispatch(); // Get the dispatch function
-  const globCloudState = useSelector((state: { cloud: any }) => state.cloud, shallowEqual); // Access loading state
+  const globCloudState = { cloudState: 0, lastSaved: new Date() };
 
   const [isShaking, setIsShaking] = useState(false);
 
@@ -29,22 +26,22 @@ export const CloudStateIndicator = () => {
   const renderIcon = () => {
     switch (globCloudState.cloudState) {
       case -2:
-        return <FilterDramaOutlined className={`text-red-500 ${isShaking ? "animate-shake" : ""}`} fontSize="inherit" />;
+        return <Cloud className={`h-6 w-6 text-red-500 ${isShaking ? "animate-shake" : ""}`} style={{ fontSize: "inherit" }} />;
       case -1:
-        return <CloudOffOutlined className="text-red-500" fontSize="inherit" />;
+        return <CloudOff className="h-6 w-6 text-red-500" style={{ fontSize: "inherit" }} />;
       case 0:
-        return <FilterDramaOutlined sx={{ fontSize: 25 }} className="text-[20px] text-secondary-dark" fontSize="inherit" />;
+        return <Cloud className="h-6 w-6 text-[20px] text-secondary-dark" style={{ fontSize: 25 }} />;
       case 1:
         return (
           <div className="relative text-secondary-dark">
-            <FilterDramaOutlined sx={{ fontSize: 25 }} className="" fontSize="inherit" />
+            <Cloud className="h-6 w-6" style={{ fontSize: 25 }} />
             <div className="absolute right-[6px] top-[22px] h-[14px] w-[14px] items-center justify-center rounded-full bg-background text-[14px]">
-              <AutorenewOutlined className="absolute animate-spin rounded-full" fontSize="inherit" />
+              <RefreshCw className="absolute h-3.5 w-3.5 animate-spin rounded-full" style={{ fontSize: "inherit" }} />
             </div>
           </div>
         );
       case 2:
-        return <CloudDoneOutlined sx={{ fontSize: 25 }} className="mb-[2px] text-green" fontSize="inherit" />;
+        return <Check className="h-6 w-6 mb-[2px] text-green" style={{ fontSize: 25 }} />;
     }
   };
 

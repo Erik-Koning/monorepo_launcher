@@ -14,8 +14,7 @@ import { Metadata } from "next";
 import { isTestEnv } from "@/utils/environments";
 import TopLevelUseClient from "@/components/ui/TopLevelUseClient";
 import { ReactQueryProvider } from "@/app-core/src/lib/providers/react-query-provider";
-import { auth } from "@/src/auth";
-import { getCurrentUserServerSide } from "../lib/auth/getCurrentUserServerSide";
+import { auth } from "@/src/lib/auth";
 
 /*
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" }); //inter is a variable font that requires no weights
@@ -51,7 +50,9 @@ export async function generateMetadata({ params }: { params: Params }) {
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Params }) {
   // const { slug } = await params; // This is incorrect for the root layout
-  const session = await auth();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   // Retrieve the headers object
   const headersList = await headers();
@@ -63,7 +64,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const isFaintBluePage = fullPath ? faintBluePages.some((page) => fullPath.startsWith(page)) : false;
   const pageBackgroundClassName = isBlueBGPage ? "bg-darkBlue" : isFaintBluePage ? "bg-faintBlue" : "bg-background";
 
-  let currentUser: Record<string,any> | undefined = undefined;
+  let currentUser: Record<string, any> | undefined = undefined;
 
   return (
     <html

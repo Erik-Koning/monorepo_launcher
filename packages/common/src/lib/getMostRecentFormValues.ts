@@ -1,7 +1,7 @@
 import { toast } from "@common/components/ui/sonner";
 
-import { resIsSuccess } from '../utils/httpStatus';
-import { ObjectHasPath } from '../utils/objectManipulation';
+import { resIsSuccess } from "../utils/httpStatus";
+import { ObjectHasPath } from "../utils/objectManipulation";
 import axios from "axios";
 
 // Function to get most recent form values
@@ -16,7 +16,7 @@ export const getMostRecentFormValues = async (payload: Record<string, any>, desi
       if (ObjectHasPath(res, ["data", "data", "fields"]) && Object.keys(res.data.data.fields).length !== 0) {
         toast({
           title: "Autofilling field values",
-          message: "Found relevant patient records from their most recent form",
+          message: "Found relevant client records from their most recent form",
           type: "default",
         });
 
@@ -24,7 +24,7 @@ export const getMostRecentFormValues = async (payload: Record<string, any>, desi
       } else {
         toast({
           title: "No relevant previous records.",
-          message: "Did not find relevant patient records from their most recent form",
+          message: "Did not find relevant client records from their most recent form",
           type: "default",
         });
       }

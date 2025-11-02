@@ -3,11 +3,11 @@ import ReactPDF from "@react-pdf/renderer";
 import { PDFViewer } from "@react-pdf/renderer";
 import PDFTemplate0 from "./PDFTemplate0";
 import React, { ReactElement, useEffect } from "react";
-import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+import { CheckCircle } from "lucide-react";
 import { toast } from "../ui/sonner";
-import { TemplateTabData } from '../../types/formGenerator';
-import { cn } from '../../lib/utils';
-import { handleDownloadUrlClick } from '../../utils/url';
+import { TemplateTabData } from "../../types/formGenerator";
+import { cn } from "../../lib/utils";
+import { handleDownloadUrlClick } from "../../utils/url";
 
 // Define an interface for the props needed by the render function
 export interface PDFDownloadContentProps {
@@ -21,7 +21,7 @@ export interface PDFDownloadContentProps {
   downloadOnClick?: boolean;
   handleDownloadClick?: () => void;
   fileDownloaded?: boolean;
-  logoSVG: string
+  logoSVG: string;
 }
 
 // This function returns the JSX ReactNode for the download content
@@ -66,7 +66,7 @@ export function renderPDFDownloadContent({
         {fileDownloaded ? (
           <div className="flex gap-x-2 text-purple">
             <h4 className="min-w-max">Downloaded</h4>
-            <CheckCircleOutlinedIcon className="" />
+            <CheckCircle className="h-5 w-5" />
           </div>
         ) : (
           <h4 className="min-w-max text-green">Ready</h4>

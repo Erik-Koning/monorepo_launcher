@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import { Button } from "./Button";
 import { Avatar, AvatarFallback, AvatarImage } from "@common/components/ui/avatar";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import { X } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from '@common/lib/utils';
+import { cn } from "@common/lib/utils";
 
 const userNarrowCardVariants = cva("flex w-fit items-center gap-x-2 rounded-full border border-border p-0.5", {
   variants: {
@@ -58,7 +58,7 @@ export const UserNarrowCard = forwardRef<HTMLDivElement, UserNarrowCardProps>(
         {allowClose && (
           <div className="flex items-center justify-center">
             <Button variant="blank" size="blank" disabled={!isRemovable} onClick={onRemove}>
-              <CloseOutlinedIcon className="rounded-full p-0.5 hover:bg-border" sx={{ fontSize: 26 }} />
+              <X className="h-[26px] w-[26px] rounded-full p-0.5 hover:bg-border" />
             </Button>
           </div>
         )}

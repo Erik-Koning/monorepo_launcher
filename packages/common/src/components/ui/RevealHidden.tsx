@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { EyeOff, Eye } from "lucide-react";
 import { Button, ButtonProps } from "./Button";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 
 interface RevealHiddenProps {
   hiddenTitle: string;
@@ -66,7 +65,12 @@ const RevealHidden: React.FC<RevealHiddenProps> = ({
         onClick={toggleVisibility}
       >
         <div className="flex h-fit items-center justify-center gap-x-2">
-          {!hideIcon && (isHidden ? <VisibilityOffOutlinedIcon sx={{ fontSize: iconSize }} /> : <VisibilityOutlinedIcon sx={{ fontSize: iconSize }} />)}
+          {!hideIcon &&
+            (isHidden ? (
+              <EyeOff className="h-3.5 w-3.5" style={{ fontSize: iconSize }} />
+            ) : (
+              <Eye className="h-3.5 w-3.5" style={{ fontSize: iconSize }} />
+            ))}
           {isHidden ? (
             <p className={cn("flex items-center", titleClassName)}>{hiddenTitle}</p>
           ) : (

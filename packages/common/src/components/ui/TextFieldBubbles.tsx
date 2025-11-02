@@ -1,13 +1,9 @@
 import React, { CSSProperties, useEffect, useState } from "react";
-import CheckIcon from "@mui/icons-material/Check";
-import ClearIcon from "@mui/icons-material/Clear";
-import TextIncreaseOutlinedIcon from "@mui/icons-material/TextIncreaseOutlined";
-import SwapVertOutlinedIcon from "@mui/icons-material/SwapVertOutlined";
-import PlaylistAddOutlinedIcon from "@mui/icons-material/PlaylistAddOutlined";
+import { Check, X, Type, ArrowUpDown, Plus } from "lucide-react";
 import { Button } from "./Button";
-import { isSubset } from '../../utils/objectManipulation';
-import { cn } from '../../lib/utils';
-import useWindowSize from '../../hooks/useWindowSize';
+import { isSubset } from "../../utils/objectManipulation";
+import { cn } from "../../lib/utils";
+import useWindowSize from "../../hooks/useWindowSize";
 import { Properties } from "csstype";
 
 interface TextFieldBubblesProps {
@@ -20,17 +16,17 @@ interface TextFieldBubblesProps {
 const TextFieldBubbles: React.FC<TextFieldBubblesProps> = ({ fieldValues, limitNumberVisible = 1, useCurrentFieldIndex = false, handleAction }) => {
   const buttonIcons = {
     append: {
-      icon: <PlaylistAddOutlinedIcon style={{ fontSize: 19 }} />,
+      icon: <Plus className="h-[19px] w-[19px]" />,
       actionType: "append", // Add action type
       tooltip: "Append",
     },
     check: {
-      icon: <CheckIcon style={{ fontSize: 19 }} />,
+      icon: <Check className="h-[19px] w-[19px]" />,
       actionType: "check", // Add action type
       tooltip: "Replace",
     },
     clear: {
-      icon: <ClearIcon style={{ fontSize: 19 }} />,
+      icon: <X className="h-[19px] w-[19px]" />,
       actionType: "clear", // Add action type
       tooltip: "Dismiss",
     },

@@ -1,6 +1,6 @@
 import { resIsSuccess } from "@/utils/httpStatus";
 import { JwtPayload } from "jsonwebtoken";
-import { getToken, JWT } from "@/app-core/src/lib/auth/next-auth-exports";
+import { auth } from "@/src/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { validateToken } from "./validateToken";
 import { cloneDeep } from "lodash";
@@ -39,6 +39,12 @@ export type ValidateUserResponse = {
   VTDetails?: Record<string, any> | null;
 };
 
+type JWT = {
+  email?: string;
+  id?: string;
+  name?: string;
+};
+
 export async function validateUser(
   req: NextRequest | Record<string, any>,
   urlToken?: string | true | { key: string }, //if an object it is the name of the JWT token inside the req body.
@@ -58,7 +64,7 @@ export async function validateUser(
   const debugSteps = [];
 
   try {
-    let nextAuthToken: JWT | null = null;
+    let authToken: JWT | null = null;
     const RLCountMax = 100; //X requests
     const RLCountBlock = RLCountMax * 1.5; //X requests
     const RLWindow = 60000; //X milliseconds
@@ -110,8 +116,17 @@ export async function validateUser(
 
     if (isNextRequest(req)) {
       // is a NextRequest
-      // get the token from the request, secureCookie is false in dev since we are using a cookie that is not secure
-      nextAuthToken = await getToken({ req: req as NextRequest, secret: process.env.AUTH_SECRET, secureCookie: isDevEnv() ? false : true });
+      // get the session using BetterAuth
+      const session = await auth.api.getSession({
+        headers: (req as NextRequest).headers,
+      });
+      if (session?.user) {
+        authToken = {
+          email: session.user.email,
+          id: session.user.id,
+          name: session.user.name,
+        } as any;
+      }
     } else {
       //Could be an APIGatewayProxyEventV2, or other request type
       //console.log("in isAPIGatewayProxyEventV2", req);
@@ -136,8 +151,8 @@ export async function validateUser(
     // Create a custom req object
     //req = createCustomReq(req, cookies);
 
-    // No nextAuthToken, and not allowing unathed, check for a urlToken JWT to authenticate with
-    if (requireAuthToken || (!allowUnAuthed && (!nextAuthToken || !nextAuthToken?.email))) {
+    // No authToken, and not allowing unathed, check for a urlToken JWT to authenticate with
+    if (requireAuthToken || (!allowUnAuthed && (!authToken || !authToken?.email))) {
       //Lets try with the token passed in the request body
       if (!urlToken) {
         console.error("No token in request body or urlToken");
@@ -169,7 +184,7 @@ export async function validateUser(
       VTDetails = validatedTokenResponseJson?.VTDetails;
     }
 
-    const validatedUserEmail = nextAuthToken?.email ? nextAuthToken.email : decodedJWT?.iss ? decodedJWT.iss : undefined;
+    const validatedUserEmail = authToken?.email ? authToken.email : decodedJWT?.iss ? decodedJWT.iss : undefined;
     console.info("\n***************** validatedUserEmail", validatedUserEmail);
     if (getUserByEmail === true) {
       console.info("\n***************** getUserByEmail is true");

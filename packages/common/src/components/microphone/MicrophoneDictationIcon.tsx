@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
-import MicOutlinedIcon from "@mui/icons-material/MicOutlined";
-import MicOffOutlinedIcon from "@mui/icons-material/MicOffOutlined";
+import { Mic, MicOff } from "lucide-react";
 import { Button } from "../ui/Button";
 
 interface MicrophoneDictationIconProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -240,7 +239,7 @@ export const MicrophoneDictationIcon = forwardRef<HTMLDivElement, MicrophoneDict
           onClick={handleMicClick}
           className="absolute right-2 top-2 z-10 flex items-center justify-center p-1 text-gray-500 hover:text-gray-700"
         >
-          {isRecording ? <MicOffOutlinedIcon sx={{ fontSize: 20 }} /> : <MicOutlinedIcon sx={{ fontSize: 20 }} />}
+          {isRecording ? <MicOff className="h-5 w-5" style={{ fontSize: 20 }} /> : <Mic className="h-5 w-5" style={{ fontSize: 20 }} />}
         </Button>
       </div>
     );

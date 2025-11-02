@@ -2,8 +2,7 @@
 
 import ClipboardJS from "clipboard";
 import * as React from "react";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { Copy, Check } from "lucide-react";
 import { Button, buttonVariants } from "./Button";
 import { fontSize } from "@mui/system";
 import { TooltipWrapper } from "./TooltipWrapper";
@@ -86,9 +85,9 @@ export const CopyToClipboardWrapper = React.forwardRef<HTMLDivElement, CopyToCli
             <div className={cn(buttonVariants({ variant: "ghost", size: "fit" }), "flex gap-x-2 text-purple hover:text-darkPurple")}>
               <div className="flex items-center gap-x-2">
                 {showSuccessIconOnClicked && buttonClicked ? (
-                  <CheckRoundedIcon sx={{ fontSize: 22 }} />
+                  <Check className="h-5.5 w-5.5" style={{ fontSize: 22 }} />
                 ) : (
-                  <ContentCopyOutlinedIcon sx={{ fontSize: 18 }} />
+                  <Copy className="h-4.5 w-4.5" style={{ fontSize: 18 }} />
                 )}
                 <h4>Copy to clipboard</h4>
               </div>

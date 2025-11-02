@@ -2,16 +2,15 @@ import React, { forwardRef, useState, useEffect, useRef, useLayoutEffect } from 
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "./DropdownMenu";
 import { Button, ButtonProps } from "./Button";
 import { Table } from "@tanstack/react-table";
-import { useUserUnengaged } from '../../hooks/useUserUnengage';
-import HeightOutlinedIcon from "@mui/icons-material/HeightOutlined";
-import useMousePosition from '../../hooks/useMousePosition';
-import useMouseIsClicked from '../../hooks/useMouseIsHeldDown';
+import { useUserUnengaged } from "../../hooks/useUserUnengage";
+import { ArrowUpDown, Filter } from "lucide-react";
+import useMousePosition from "../../hooks/useMousePosition";
+import useMouseIsClicked from "../../hooks/useMouseIsHeldDown";
 import { time } from "console";
 import { start } from "repl";
-import useMouseIsHeldDown from '../../hooks/useMouseIsHeldDown';
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import { cn } from '../../lib/utils';
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
+import useMouseIsHeldDown from "../../hooks/useMouseIsHeldDown";
+import { cn } from "../../lib/utils";
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
 
 export interface FilterTableColumnsDropdownProps extends ButtonProps {
   table: any; // table instance from react-table
@@ -146,7 +145,7 @@ export const FilterTableColumnsDropdown = forwardRef<HTMLDivElement, FilterTable
               //transform: "translate(-50%, -50%)",
             }}
           >
-            <HeightOutlinedIcon sx={{ fontSize: 20 }} className="-left-4 -top-3" />
+            <ArrowUpDown className="h-5 w-5 -left-4 -top-3" style={{ fontSize: 20 }} />
           </div>
         )}
         <DropdownMenu
@@ -157,7 +156,7 @@ export const FilterTableColumnsDropdown = forwardRef<HTMLDivElement, FilterTable
         >
           <DropdownMenuTrigger asChild className="" onClick={handleOpen}>
             <Button className={cn("ml-auto flex h-[42px] gap-x-[6px] text-secondary-dark", classNameButton)} {...props}>
-              <FilterAltOutlinedIcon sx={{ fontSize: 18 }} />
+              <Filter className="h-[18px] w-[18px]" style={{ fontSize: 18 }} />
               <p>Columns</p>
             </Button>
           </DropdownMenuTrigger>

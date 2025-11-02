@@ -1,17 +1,17 @@
 import React, { ReactElement, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { FieldValues, useForm } from "react-hook-form";
-import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import { Section } from '../../types/formGenerator';
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
-import { generatePDFFileName } from '../../utils/stringManipulation';
+import { FileText } from "lucide-react";
+import { Section } from "../../types/formGenerator";
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
+import { generatePDFFileName } from "../../utils/stringManipulation";
 import { findContacts, populateTemplateWithSavedFields, removeKeySiblings } from "@common/components/formGenerator/formatGeneratorData";
-import { getObjectKeyNamesThatMatchFilterKeys, removeKeysAndFlatten, renameObjectKeys, retainKeys } from '../../utils/objectManipulation';
-import { cn } from '../../lib/utils';
-import { isValidImageUrl } from '../../lib/validations/validations';
+import { getObjectKeyNamesThatMatchFilterKeys, removeKeysAndFlatten, renameObjectKeys, retainKeys } from "../../utils/objectManipulation";
+import { cn } from "../../lib/utils";
+import { isValidImageUrl } from "../../lib/validations/validations";
 import { dateToFriendlyString } from "../../utils/dateManipulation";
 import { handleDownloadUrlClick } from "../../utils/url";
-import { Button } from '../../components/ui/Button';
+import { Button } from "../../components/ui/Button";
 import { CheckBoxButton } from "../ui/CheckBoxButton";
 import { SentVsRead } from "../ui/SentVsRead";
 import { SelectBox } from "../inputs/SelectBox";
@@ -282,7 +282,7 @@ const PDFReportsHandler: React.FC<PDFReportsHandlerProps> = ({
                   tooltip="Download"
                   tooltipDelay={1200}
                 >
-                  <DescriptionOutlinedIcon />
+                  <FileText className="h-5 w-5" />
                   <p className="font-medium">{fileName}</p>
                 </Button>
                 <div>
@@ -359,7 +359,12 @@ const PDFReportsHandler: React.FC<PDFReportsHandlerProps> = ({
       <div className={cn("w-full", className)}>
         {Object.entries(reportSectionsToShow).map(([report, reportValue]) => (
           <div className="my-4 h-[80vh]" key={report}>
-            <SinglePDFPreview title={camelOrSnakeToTitleCase(report)} document={memoizedPDFDocuments[report]} encryptedFormId={data.id} logoSVG={logoSVG} />
+            <SinglePDFPreview
+              title={camelOrSnakeToTitleCase(report)}
+              document={memoizedPDFDocuments[report]}
+              encryptedFormId={data.id}
+              logoSVG={logoSVG}
+            />
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { emailRegex } from '../lib/validations/email';
+import { emailRegex } from "../lib/validations/email";
 import camelOrSnakeToTitleCaseUnderscore from "./camelOrSnakeToTitleCaseUnderscore";
 import { getVersionSuffixHumanReadable } from "./formVersionNaming";
 import { ensureGlobalFlag, isValidRegexString, stringToRegex } from "./regex";
@@ -975,7 +975,7 @@ export const mostLikelyContactName = (obj: Record<string, any>, priorityKeys: st
 //from a shallow map, get the value of the key this is most likely to be the customers name, return an object with the first and last name
 export const getMostLikelyNameFromEntry = (
   entry: Record<string, string>,
-  priorityKeys: string[] = ["patient_firstName", "patient_lastName"],
+  priorityKeys: string[] = ["client_firstName", "client_lastName"],
   alternateKeys: string[] = ["physicianName", "newDentistName"]
 ): Record<string, any> => {
   let result: Record<string, any> = {};
@@ -1052,10 +1052,10 @@ export const generatePDFFileName = (title: string, entryFields: Record<string, a
   }
   const fileName =
     camelOrSnakeToTitleCaseUnderscore(title) +
-    "_Patient_" +
-    entryFields.patient.firstName +
+    "_Client_" +
+    entryFields.client.firstName +
     "-" +
-    entryFields.patient.lastName +
+    entryFields.client.lastName +
     "_Date_" +
     entryFields.appointmentDetails.appointmentDate +
     versionSuffix +

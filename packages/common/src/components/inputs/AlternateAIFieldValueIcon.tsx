@@ -1,8 +1,8 @@
 import React, { ReactElement, ReactNode } from "react";
 import { forwardRef } from "react";
 import { HoverCardClickable } from "./HoverCardClickable";
-import { cn } from '../../lib/utils';
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { cn } from "../../lib/utils";
+import { Sparkles } from "lucide-react";
 import { Button } from "../ui/Button";
 
 interface AlternateAIFieldValueIconProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,7 +41,7 @@ export const AlternateAIFieldValueIcon = forwardRef<HTMLDivElement, AlternateAIF
         side={side}
         sideOffset={sideOffset}
         className={cn("px-1", className)}
-        triggerJSX={triggerJSX ?? <AutoAwesomeIcon sx={{ fontSize: 14 }} className={cn(triggerClassName)} />}
+        triggerJSX={triggerJSX ?? <Sparkles className={cn(triggerClassName)} style={{ fontSize: 14 }} />}
         triggerClassName={triggerClassName}
       >
         <p className="text-sm">Change the field value</p>

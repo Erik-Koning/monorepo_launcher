@@ -7,16 +7,16 @@ import Header from "./Header";
 import Greeting from "./Greeting";
 import Preamble from "./Preamble";
 import ReportSection from "./ReportSection";
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
 import Closing from "./Closing";
 import EntryFields from "./EntryFields";
 import Signature from "./Signature";
-import { buildAuthor, mostLikelyFirstName, mostLikelyLastName, splitOnString, startsWithGreetings } from '../../utils/stringManipulation';
+import { buildAuthor, mostLikelyFirstName, mostLikelyLastName, splitOnString, startsWithGreetings } from "../../utils/stringManipulation";
 import Footer from "./Footer";
 import Recipient from "./Recipient";
-import { falseOrEmpty, objHasKey, removeKeysAndFlatten, retainKeys, retainKeysWithValues } from '../../utils/objectManipulation';
-import { Field, TemplateTabData } from '../../types/formGenerator';
-import { getRegardingValue, RegardingValue } from '../../utils/form';
+import { falseOrEmpty, objHasKey, removeKeysAndFlatten, retainKeys, retainKeysWithValues } from "../../utils/objectManipulation";
+import { Field, TemplateTabData } from "../../types/formGenerator";
+import { getRegardingValue, RegardingValue } from "../../utils/form";
 
 //pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 //pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
@@ -289,13 +289,13 @@ const PDFTemplate0: React.FC<SinglePDFPreviewProps> = ({
   const regardingObject = getRegardingValue(reportTemplate, entryFields);
   const regardingValue = typeof regardingObject === "string" ? regardingObject : regardingObject.value;
 
-  const patientName = `${entryFields.patient.firstName} ${entryFields.patient.lastName}`;
+  const clientName = `${entryFields.client.firstName} ${entryFields.client.lastName}`;
   const author = buildAuthor(ownerFields);
 
   const doc = (
     <Document
       style={undefined}
-      title={title + (patientName ? ` - ${patientName}` : "")}
+      title={title + (clientName ? ` - ${clientName}` : "")}
       author={author}
       subject={`${entryFields.appointmentDetails.reasonForAssessment}`}
     >
@@ -305,8 +305,8 @@ const PDFTemplate0: React.FC<SinglePDFPreviewProps> = ({
           titleLeft={officeFields.name}
           logoLeft={officeFields.logo}
           titleRight={title}
-          patientName={`${entryFields.patient.firstName} ${entryFields.patient.lastName}`}
-          patientDOB={entryFields.patient.dateOfBirth}
+          clientName={`${entryFields.client.firstName} ${entryFields.client.lastName}`}
+          clientDOB={entryFields.client.dateOfBirth}
           subject={entryFields.appointmentDetails.reasonForAssessment}
           officeFields={officeFields}
           ownerFields={ownerFields}
@@ -314,8 +314,8 @@ const PDFTemplate0: React.FC<SinglePDFPreviewProps> = ({
         <View key={title + "contentContainer"} style={[styles.contentContainer, { flexGrow: appendixFieldsPageBreak ? 0 : 1 }]} wrap debug={debug}>
           <Recipient
             lastEdited={lastEdited}
-            patientName={`${entryFields.patient.firstName} ${entryFields.patient.lastName}`}
-            patientDOB={entryFields.patient.dateOfBirth}
+            clientName={`${entryFields.client.firstName} ${entryFields.client.lastName}`}
+            clientDOB={entryFields.client.dateOfBirth}
             regardingValue={regardingValue}
             officeFields={officeFields}
             ownerFields={ownerFields}

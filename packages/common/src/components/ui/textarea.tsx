@@ -1,21 +1,16 @@
-import useComputedStyles from '../../hooks/useComputedStyle';
-import useElementStyles from '../../hooks/useElementStyles';
-import { useHoverState } from '../../hooks/useHovered';
-import { useIsFocusedCallback } from '../../hooks/useIsFocusedCallback';
-import { useKeysPressed } from '../../hooks/useKeysPressed';
-import { cn } from '../../lib/utils';
-import autofillTooltipText from '../../utils/autofillTooltipText';
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
-import { mergeKeepNonNullOrUndefined, renameKeys } from '../../utils/objectManipulation';
-import { mergeRefs } from '../../utils/ref';
-import { anonymizeStringWithReferencedFields, charInWord, stringIsWhitespace } from '../../utils/stringManipulation';
-import { isDef } from '../../utils/types';
-import { CloseOutlined } from "@mui/icons-material";
-import AutoModeOutlined from "@mui/icons-material/AutoModeOutlined";
-import RedoOutlinedIcon from "@mui/icons-material/RedoOutlined";
-import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
-import HistoryEduOutlinedIcon from "@mui/icons-material/HistoryEduOutlined";
-import UndoOutlined from "@mui/icons-material/UndoOutlined";
+import useComputedStyles from "../../hooks/useComputedStyle";
+import useElementStyles from "../../hooks/useElementStyles";
+import { useHoverState } from "../../hooks/useHovered";
+import { useIsFocusedCallback } from "../../hooks/useIsFocusedCallback";
+import { useKeysPressed } from "../../hooks/useKeysPressed";
+import { cn } from "../../lib/utils";
+import autofillTooltipText from "../../utils/autofillTooltipText";
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
+import { mergeKeepNonNullOrUndefined, renameKeys } from "../../utils/objectManipulation";
+import { mergeRefs } from "../../utils/ref";
+import { anonymizeStringWithReferencedFields, charInWord, stringIsWhitespace } from "../../utils/stringManipulation";
+import { isDef } from "../../utils/types";
+import { X, Sparkles, Redo, Building, GraduationCap, Undo } from "lucide-react";
 import axios from "axios";
 import {
   BaseSyntheticEvent,
@@ -860,7 +855,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         const url = process.env.NEXT_PUBLIC_LONG_RUNNING_AI_RESPONSE_URL;
         console.log("url", url);
 
-        if(!url) {
+        if (!url) {
           throw new Error("No URL found");
         }
 
@@ -971,7 +966,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                     sideOffset={-4}
                     side={"top"}
                     //forceOpen={true}
-                    triggerJSX={<AutoModeOutlined style={{ fontSize: 14 }} className={labelIconsClassNames} onClick={toggleAIEditMode} />}
+                    triggerJSX={<Sparkles className={cn("h-[14px] w-[14px]", labelIconsClassNames)} onClick={toggleAIEditMode} />}
                     //className={cn("text-tertiary-dark hover:text-skyBlue", className)}
                   >
                     <div className="flex items-center gap-x-1 px-2 py-1 text-sm text-primary-dark">
@@ -1059,7 +1054,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                                   }, 100);
                                 }}
                               >
-                                <CloseOutlined className={cn("h-4 w-4 transition-all duration-200 dark:text-white")} />
+                                <X className={cn("h-4 w-4 transition-all duration-200 dark:text-white")} />
                               </Button>
                               <Button
                                 variant="ghost"
@@ -1068,7 +1063,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                                   generateFieldValueAI(aiPromptInput);
                                 }}
                               >
-                                <AutoModeOutlined
+                                <Sparkles
                                   className={cn(
                                     "h-4 w-4 transition-all duration-200 dark:text-white"
                                     //aiPromptInput ? "scale-100 opacity-100" : "scale-95 opacity-30"
@@ -1105,9 +1100,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                   {preAIValue && preAIValue !== textValueState && (
                     <Button id="undoButton" className={cn("", textValueState && "bg-background/75")} variant="ghost" onClick={undoAIAction}>
                       {undoIsRedo ? (
-                        <RedoOutlinedIcon className={cn(" h-4 w-4 transition-all duration-200 dark:text-white")} />
+                        <Redo className={cn(" h-4 w-4 transition-all duration-200 dark:text-white")} />
                       ) : (
-                        <UndoOutlined className={cn(" h-4 w-4 transition-all duration-200 dark:text-white")} />
+                        <Undo className={cn(" h-4 w-4 transition-all duration-200 dark:text-white")} />
                       )}
                     </Button>
                   )}
@@ -1118,7 +1113,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                       disabled={!textValueState}
                       onClick={generateFieldValueAI}
                     >
-                      <AutoModeOutlined
+                      <Sparkles
                         className={cn(
                           "h-4 w-4 transition-all duration-200 dark:text-white",
                           textValueState ? "scale-100 opacity-100" : "scale-95 opacity-30"
@@ -1245,7 +1240,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               className="px-1 py-1 bg-faintGray rounded-lg"
               items={Object.fromEntries(referenceableFieldKeys.map((key) => [key, key]))}
               query={referenceableFieldSearchQuery}
-              iconsMap={{ default: HistoryEduOutlinedIcon, "^rel.*$": CorporateFareOutlinedIcon }}
+              iconsMap={{ default: GraduationCap, "^rel.*$": Building }}
               onSelectCallback={handleInsertTextToField}
               hideKeysRegexs={[/^relOwner_/]}
               maxWidthPX={400}

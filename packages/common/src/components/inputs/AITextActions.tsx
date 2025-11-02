@@ -1,10 +1,8 @@
 "use client";
 
-import { DoneAll, FormatListBulletedOutlined, MoodOutlined, ShortText, NotesOutlined as Text, SendOutlined } from "@mui/icons-material";
+import { CheckCheck, List, Smile, Type, FileText, Send } from "lucide-react";
 import React, { forwardRef, useState, ReactNode, useEffect } from "react";
 import TextCarousel from "../ui/TextCarousel";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material";
 
 export const AITEXT_VALUES = ["Expand", "Proofread", "Improve Tone", "Shorten", "Formatted List", "Custom Prompt"] as const; // Use `as const` for a readonly tuple
 
@@ -12,7 +10,7 @@ export type AITextString = (typeof AITEXT_VALUES)[number];
 export interface AITextItem {
   text: AITextString;
   shortText?: string;
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>; // Type for Material-UI icons
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; // Type for lucide-react icons
   prompt: string;
   iconClassName: string;
   containerClassName: string;
@@ -23,35 +21,35 @@ export interface AITextItem {
 export const AITextActionItems: AITextItem[] = [
   {
     text: "Expand",
-    icon: Text,
+    icon: FileText,
     prompt: "Expand on the content without making up new facts",
     iconClassName: "text-orange-600",
     containerClassName: "bg-orange-100 border-orange-500",
   },
   {
     text: "Proofread",
-    icon: DoneAll,
+    icon: CheckCheck,
     prompt: "Fix spelling and grammar",
     iconClassName: "text-emerald-600",
     containerClassName: "bg-emerald-100 border-emerald-500",
   },
   {
     text: "Improve Tone",
-    icon: MoodOutlined,
+    icon: Smile,
     prompt: "Improve the tone of the text to be more professional and friendly",
     iconClassName: "text-rose-600 text-2xl",
     containerClassName: "bg-rose-100 border-rose-500",
   },
   {
     text: "Shorten",
-    icon: ShortText,
+    icon: Type,
     prompt: "Make the text shorter without losing important information",
     iconClassName: "text-indigo-600",
     containerClassName: "bg-indigo-100 border-indigo-500",
   },
   {
     text: "Formatted List",
-    icon: FormatListBulletedOutlined,
+    icon: List,
     prompt: "Convert the text into a formatted and hyphenated list",
     iconClassName: "text-blue-600",
     containerClassName: "bg-blue-100 border-blue-500",
@@ -59,7 +57,7 @@ export const AITextActionItems: AITextItem[] = [
   {
     text: "Custom Prompt",
     shortText: "Prompt",
-    icon: SendOutlined,
+    icon: Send,
     prompt:
       "Fill this field based on the following instructions, only return back the resulting text, do not quote it or give any other response beyond the resulting text:\n",
     sendWithUserEditedFields: true,

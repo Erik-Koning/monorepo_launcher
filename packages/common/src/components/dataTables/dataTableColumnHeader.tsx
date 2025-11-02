@@ -1,14 +1,12 @@
 import { ArrowDownIcon, ArrowUpIcon, CaretSortIcon, EyeNoneIcon } from "@radix-ui/react-icons";
-import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
-import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
-import UnfoldMoreOutlinedIcon from "@mui/icons-material/UnfoldMoreOutlined";
+import { ArrowDown, ArrowUp, MoreVertical } from "lucide-react";
 
 import { Column } from "@tanstack/react-table";
 
-import { cn } from '../../lib/utils';
-import { Button } from '../../components/ui/Button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../../components/ui/DropdownMenu';
-import { useUserUnengaged } from '../../hooks/useUserUnengage';
+import { cn } from "../../lib/utils";
+import { Button } from "../../components/ui/Button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../../components/ui/DropdownMenu";
+import { useUserUnengaged } from "../../hooks/useUserUnengage";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 
 interface DataTableColumnHeaderProps<TData, TValue> extends React.HTMLAttributes<HTMLDivElement> {
@@ -90,11 +88,11 @@ export function DataTableColumnHeader<TData, TValue>({
           >
             <span>{title}</span>
             {column.getIsSorted() === "asc" ? (
-              <ArrowUpwardOutlinedIcon sx={{ fontSize: 14 }} />
+              <ArrowUp className="h-3.5 w-3.5" style={{ fontSize: 14 }} />
             ) : column.getIsSorted() === "desc" ? (
-              <ArrowDownwardOutlinedIcon sx={{ fontSize: 14 }} />
+              <ArrowDown className="h-3.5 w-3.5" style={{ fontSize: 14 }} />
             ) : (
-              <UnfoldMoreOutlinedIcon sx={{ fontSize: 14 }} className="opacity-[55%]" />
+              <MoreVertical className="h-3.5 w-3.5 opacity-[55%]" style={{ fontSize: 14 }} />
             )}
           </Button>
         </DropdownMenuTrigger>

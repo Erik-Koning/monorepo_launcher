@@ -1487,8 +1487,7 @@ export const securityControls: securityControls = {
       satisfied: true,
       standards: {
         SOC_2: {
-          description:
-            `${process.env.NEXT_PUBLIC_APP_TITLE} has developed policies and procedures governing the system development life cycle, including documented policies for tracking, testing, approving, and validating changes.`,
+          description: `${process.env.NEXT_PUBLIC_APP_TITLE} has developed policies and procedures governing the system development life cycle, including documented policies for tracking, testing, approving, and validating changes.`,
           categoryId: "CC8",
         },
       },
@@ -1645,8 +1644,7 @@ export const securityControls: securityControls = {
       satisfied: false, //TODO add contact method to trust center
       standards: {
         SOC_2: {
-          description:
-            `${process.env.NEXT_PUBLIC_APP_TITLE} has a defined vendor management policy that establishes requirements of ensuring third-party entities meet the organization's data preservation and protection requirements.`,
+          description: `${process.env.NEXT_PUBLIC_APP_TITLE} has a defined vendor management policy that establishes requirements of ensuring third-party entities meet the organization's data preservation and protection requirements.`,
           categoryId: "CC2",
         },
       },
@@ -2597,7 +2595,7 @@ export const securityControls: securityControls = {
       code: ["ISO_27001_8.11"],
       name: "Data Masking",
       category: "Access Control",
-      tests: true, //test that patient identifiers are masked before sent to third parties
+      tests: true, //test that client identifiers are masked before sent to third parties
       standards: {
         ISO_27001: {
           description:

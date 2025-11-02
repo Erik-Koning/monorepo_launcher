@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import { Button } from "./Button";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
 import { FieldValues, RegisterOptions, UseFormRegister } from "react-hook-form";
-import { colourToHex } from '../../utils/colour';
+import { colourToHex } from "../../utils/colour";
 
-import { Check, DoneOutlineRounded, CheckRounded, ShortText, ShortcutOutlined } from "@mui/icons-material";
+import { Check, CheckCircle, Type, Command } from "lucide-react";
 import { Input } from "../inputs/Input";
 import { HoverCard, HoverCardContent, HoverCardProps, HoverCardTrigger } from "../ui/hover-card";
 import { HoverCardClickable } from "../inputs/HoverCardClickable";

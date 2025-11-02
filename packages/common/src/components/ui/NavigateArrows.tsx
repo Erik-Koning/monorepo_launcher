@@ -1,6 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
+import { ChevronLeft, ChevronUp } from "lucide-react";
 import { HoverCardSimple } from "./HoverCardSimple";
 import { Button } from "./Button";
 
@@ -22,7 +21,7 @@ export const NavigateArrows = forwardRef<HTMLDivElement, NavigateArrowsProps>(({
           variant="ghost"
           className="flex items-center rounded-lg bg-tertiary-light/20 p-1 text-secondary-dark hover:bg-purple hover:text-primary-light"
         >
-          <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 16 }} />
+          <ChevronLeft className="h-4 w-4" style={{ fontSize: 16 }} />
         </Button>
       )}
       {true && (
@@ -35,7 +34,7 @@ export const NavigateArrows = forwardRef<HTMLDivElement, NavigateArrowsProps>(({
           variant="ghost"
           className="flex h-full rotate-180 items-center rounded-lg bg-tertiary-light/20 p-1 text-secondary-dark hover:bg-purple hover:text-primary-light"
         >
-          <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 16 }} />
+          <ChevronLeft className="h-4 w-4" style={{ fontSize: 16 }} />
         </Button>
       )}
     </div>

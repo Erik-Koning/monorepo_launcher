@@ -1,10 +1,10 @@
-import { getElemSizeULByRef, getMaxElemWidthByRef, useItemSizeUL } from '../../hooks/useItemSizeUL';
-import { cn } from '../../lib/utils';
+import { getElemSizeULByRef, getMaxElemWidthByRef, useItemSizeUL } from "../../hooks/useItemSizeUL";
+import { cn } from "../../lib/utils";
 import React, { forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button, ButtonProps } from "./Button";
-import { getObjectKeysValue } from '../../utils/objectManipulation';
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { numWords } from '../../utils/stringManipulation';
+import { getObjectKeysValue } from "../../utils/objectManipulation";
+import { X } from "lucide-react";
+import { numWords } from "../../utils/stringManipulation";
 
 interface CuteWordOrbProps extends React.HTMLAttributes<HTMLButtonElement> {
   text?: string;
@@ -184,7 +184,7 @@ const CuteWordOrb = forwardRef<HTMLDivElement, CuteWordOrbProps>(
             <div className={cn("flex", showCloseButton && "relative")}>
               {showCloseButton && (
                 <div className="absolute flex h-full w-full items-center justify-center bg-secondary-light">
-                  <CloseOutlinedIcon style={{ fontSize: 15 }} />
+                  <X className="h-3.75 w-3.75" style={{ fontSize: 15 }} />
                 </div>
               )}
               {text && iconsMap && iconsMap.default && (

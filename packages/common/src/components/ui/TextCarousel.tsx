@@ -1,7 +1,7 @@
-import { getElemSizeULByRef, useItemSizeUL } from '../../hooks/useItemSizeUL';
-import { cn } from '../../lib/utils';
-import { IndexRange, isContainedWithinRange, rangesContained, removeIndiciesFromText, removeRangesContained } from '../../utils/numbers';
-import { falseOrEmpty, filterArrayByBooleanArray, numElementsTrue } from '../../utils/objectManipulation';
+import { getElemSizeULByRef, useItemSizeUL } from "../../hooks/useItemSizeUL";
+import { cn } from "../../lib/utils";
+import { IndexRange, isContainedWithinRange, rangesContained, removeIndiciesFromText, removeRangesContained } from "../../utils/numbers";
+import { falseOrEmpty, filterArrayByBooleanArray, numElementsTrue } from "../../utils/objectManipulation";
 import {
   containsOnlyNewlinesAndSpaces,
   isStringArrayInString,
@@ -10,10 +10,8 @@ import {
   removeRangeFromString,
   removeTrailingWhitespace,
   spliceStringArrayShortForm,
-} from '../../utils/stringManipulation';
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
-import UnfoldMoreOutlinedIcon from "@mui/icons-material/UnfoldMoreOutlined";
+} from "../../utils/stringManipulation";
+import { ChevronLeft, ChevronUp, MoreVertical } from "lucide-react";
 import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { containsReferencedFields, spliceReferencedFieldsStringToArray } from "@common/components/formGenerator/formatGeneratorData";
 import { BaseModal } from "../modals/BaseModal";
@@ -515,7 +513,7 @@ const TextCarousel: FC<TextCarouselProps> = ({
               className="hover:bg-purple/80 flex h-full items-center rounded-md text-tertiary-light/40 hover:text-primary-light "
               onClick={(e: any) => handleDialogOpen()}
             >
-              <KeyboardArrowUpOutlinedIcon sx={{ fontSize: 20 }} />
+              <ChevronUp className="h-5 w-5" style={{ fontSize: 20 }} />
             </Button>
           </div>
         )}
@@ -555,7 +553,7 @@ const TextCarousel: FC<TextCarouselProps> = ({
                 className="flex h-full items-center rounded-md p-[1px] py-[3px] text-tertiary-light/40 hover:bg-purple hover:text-primary-light"
                 onClick={(e: any) => handleDialogOpen()}
               >
-                <UnfoldMoreOutlinedIcon sx={{ fontSize: 20 }} />
+                <MoreVertical className="h-5 w-5" style={{ fontSize: 20 }} />
               </Button>
             </div>
           )}
@@ -580,7 +578,7 @@ const TextCarousel: FC<TextCarouselProps> = ({
                 variant="ghost"
                 className="flex items-center rounded-full bg-tertiary-light/20 p-1 text-secondary-dark hover:bg-purple hover:text-primary-light"
               >
-                <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 16 }} />
+                <ChevronLeft className="h-4 w-4" style={{ fontSize: 16 }} />
               </Button>
             )}
           </div>
@@ -605,7 +603,7 @@ const TextCarousel: FC<TextCarouselProps> = ({
                 variant="ghost"
                 className="flex h-full rotate-180 items-center rounded-full bg-tertiary-light/20 p-1 text-secondary-dark hover:bg-purple hover:text-primary-light"
               >
-                <ArrowBackIosNewOutlinedIcon sx={{ fontSize: 16 }} />
+                <ChevronLeft className="h-4 w-4" style={{ fontSize: 16 }} />
               </Button>
             )}
           </div>

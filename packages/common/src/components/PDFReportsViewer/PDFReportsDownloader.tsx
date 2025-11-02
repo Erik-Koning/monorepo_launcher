@@ -1,7 +1,7 @@
-import { Section } from '../../types/formGenerator';
-import camelOrSnakeToTitleCase from '../../utils/camelOrSnakeToTitleCase';
-import { generatePDFFileName } from '../../utils/stringManipulation';
-import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { Section } from "../../types/formGenerator";
+import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
+import { generatePDFFileName } from "../../utils/stringManipulation";
+import { FileText } from "lucide-react";
 import { findContacts, populateTemplateWithSavedFields, removeKeySiblings } from "@common/components/formGenerator/formatGeneratorData";
 //import SinglePDFDownload from "./SinglePDFDownload";
 import {
@@ -10,17 +10,17 @@ import {
   removeKeysAndFlatten,
   renameObjectKeys,
   retainKeys,
-} from '../../utils/objectManipulation';
+} from "../../utils/objectManipulation";
 //@ts-ignore
-import { Button } from '../../components/ui/Button';
+import { Button } from "../../components/ui/Button";
 import { Input } from "../inputs/Input";
 import { FieldValues, useForm } from "react-hook-form";
 import React, { ReactElement, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Select } from "../ui/select";
 import { SelectBox } from "../inputs/SelectBox";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 import { CheckBoxButton } from "../ui/CheckBoxButton";
-import { isValidImageUrl } from '../../lib/validations/validations';
+import { isValidImageUrl } from "../../lib/validations/validations";
 
 import dynamic from "next/dynamic";
 
@@ -43,7 +43,7 @@ interface PDFReportsDownloaderProps {
   onHasFileToSecureSend?: ((arg0: any) => void) | null;
   onSecureSendDataChange?: ((arg0: any) => void) | null;
   enableSecureSend?: boolean;
-  logoSVG: string
+  logoSVG: string;
 }
 
 const PDFReportsDownloader: React.FC<PDFReportsDownloaderProps> = ({
@@ -249,7 +249,7 @@ const PDFReportsDownloader: React.FC<PDFReportsDownloaderProps> = ({
                 tooltipSize={"fit"}
                 tooltipClassName="text-sm"
               >
-                <DescriptionOutlinedIcon />
+                <FileText className="h-5 w-5" />
                 <p className="font-medium">{fileName}</p>
               </Button>
               <div>{jsx}</div>

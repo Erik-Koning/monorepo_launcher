@@ -1,6 +1,5 @@
-import { cn } from '../../lib/utils';
-import { AddRounded, CloseOutlined, CloseRounded } from "@mui/icons-material";
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import { cn } from "../../lib/utils";
+import { Plus, X, Minus } from "lucide-react";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { forwardRef, useEffect, useState } from "react";
 import { Button } from "../ui/Button";
@@ -59,7 +58,7 @@ export const FilterTags = forwardRef<HTMLDivElement, FilterTagsProps>(
             onClick={() => setActiveTags([])}
             tooltip="Remove all filters"
           >
-            <CloseRounded sx={{ fontSize: "22px" }} />
+            <X className="h-5.5 w-5.5" style={{ fontSize: "22px" }} />
           </Button>
         )}
         {tags.map((tag) => {
@@ -71,9 +70,9 @@ export const FilterTags = forwardRef<HTMLDivElement, FilterTagsProps>(
               containerClassName={cn("border-dashed", isActive && "border-solid border-secondary-dark bg-ultraFaintPurple")}
               icon={
                 isActive ? (
-                  <CloseRounded className={"text-tertiary-dark"} sx={{ fontSize: "15px" }} />
+                  <X className="h-3.75 w-3.75 text-tertiary-dark" style={{ fontSize: "15px" }} />
                 ) : (
-                  <AddRounded className={"text-border"} sx={{ fontSize: "16px" }} />
+                  <Plus className="h-4 w-4 text-border" style={{ fontSize: "16px" }} />
                 )
               }
               corner="top-right"

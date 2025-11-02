@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 import { Switch } from "./switch";
 import { toast } from "@common/components/ui/sonner";
 import { Loader2 } from "lucide-react";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
+import { Lock, Unlock } from "lucide-react";
 import RevealHidden from "./RevealHidden";
 import { CopyToClipboardWrapper } from "./CopyToClipboardWrapper";
 import { InputArray } from "./InputArray";
@@ -214,13 +213,13 @@ export const ChangeTwoFA = forwardRef<HTMLDivElement, ChangeTwoFAProps>(
           {!show2FASetup && twoFAEnabled && (
             <div className="flex w-fit items-center gap-x-2 rounded-md border border-border p-2.5 shadow-md">
               <h1>Two-factor Authentication Enabled</h1>
-              <LockOutlinedIcon className="text-green" sx={{ fontSize: 24 }} />
+              <Lock className="h-6 w-6 text-green" style={{ fontSize: 24 }} />
             </div>
           )}
           {!show2FASetup && !twoFAEnabled && (
             <div className="flex w-fit items-center gap-x-2 rounded-md border border-border p-2.5 shadow-md">
               <h1>Two-factor Authentication Disabled</h1>
-              <LockOpenOutlinedIcon className="text-tertiary-dark" sx={{ fontSize: 24 }} />
+              <Unlock className="h-6 w-6 text-tertiary-dark" style={{ fontSize: 24 }} />
             </div>
           )}
         </div>

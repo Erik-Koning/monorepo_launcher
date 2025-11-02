@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Text, View, StyleSheet, Rect, Svg } from "@react-pdf/renderer";
-import { formatPhoneNumberAmerica, hexToRgb } from '../../utils/stringManipulation';
-import { getFirstValidKeyValue } from '../../utils/objectManipulation';
+import { formatPhoneNumberAmerica, hexToRgb } from "../../utils/stringManipulation";
+import { getFirstValidKeyValue } from "../../utils/objectManipulation";
 import { getStringDateFormatFromDate } from "../../utils/dateManipulation";
 
 const styles = StyleSheet.create({
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
 });
 
 interface MyComponentProps {
-  patientName: string;
-  patientDOB: string;
+  clientName: string;
+  clientDOB: string;
   regardingValue: string;
   content?: Record<string, any>;
   officeFields?: Record<string, any>;
@@ -89,8 +89,8 @@ interface MyComponentProps {
 }
 
 const Recipient: React.FC<MyComponentProps> = ({
-  patientName,
-  patientDOB,
+  clientName,
+  clientDOB,
   regardingValue,
   content,
   officeFields,
@@ -136,12 +136,12 @@ const Recipient: React.FC<MyComponentProps> = ({
         <View style={[styles.textRightCol, { flexDirection: "row", justifyContent: "flex-end" }]}>
           <View style={[styles.borderBox, { alignItems: "flex-start" }]}>
             <View style={[styles.flexRow, { justifyContent: "center" }]}>
-              <Text style={[styles.text, { paddingRight: "2px" }]}>{"Patient: "}</Text>
-              <Text style={styles.variableText}>{patientName}</Text>
+              <Text style={[styles.text, { paddingRight: "2px" }]}>{"Client: "}</Text>
+              <Text style={styles.variableText}>{clientName}</Text>
             </View>
             <View style={[styles.flexRow, { justifyContent: "center" }]}>
-              <Text style={[styles.text, { paddingRight: "2px" }]}>{"Patient DOB: "}</Text>
-              <Text style={styles.variableText}>{patientDOB}</Text>
+              <Text style={[styles.text, { paddingRight: "2px" }]}>{"Client DOB: "}</Text>
+              <Text style={styles.variableText}>{clientDOB}</Text>
             </View>
             <View style={[styles.flexRow, { justifyContent: "center" }]}>
               <Text style={[styles.text, { paddingRight: "2px" }]}>{"Re: "}</Text>

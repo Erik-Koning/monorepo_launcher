@@ -3,27 +3,22 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { HiOutlineHome, HiOutlineUser, HiOutlineMenu, HiOutlineCalendar } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
-import { Settings2Icon } from "lucide-react";
 import {
-  DashboardCustomizeRounded,
-  AutoGraphRounded,
-  ConnectWithoutContactRounded,
-  LineStyleRounded,
-  TaskRounded,
-  ConnectWithoutContactOutlined,
-  DashboardCustomizeOutlined,
-  LineStyleOutlined,
-  TaskOutlined,
-  AutoGraphOutlined,
-  HelpOutlineOutlined,
-  SettingsOutlined,
-  RecentActorsOutlined,
-  LogoutOutlined,
-  InboxOutlined,
-  OutboxOutlined,
-  MoveToInboxOutlined,
-} from "@mui/icons-material";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+  Settings2Icon,
+  ChevronLeft,
+  User,
+  Building,
+  Inbox,
+  Settings,
+  LogOut,
+  HelpCircle,
+  Users,
+  LayoutDashboard,
+  TrendingUp,
+  Network,
+  List,
+  CheckSquare,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@common/components/ui/avatar";
 import { cn } from "@common/lib/utils";
 import { Popover } from "@mui/material";
@@ -37,14 +32,11 @@ import { useRouter } from "next/navigation";
 import { LineSpacer } from "../../../../common/src/components/ui/LineSpacer";
 import { RefreshWindow, navigateToPath } from "@common/utils/DOM";
 import { useUserUnengaged } from "@common/hooks/useUserUnengage";
-import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
-import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
 import { isTestDevOrSuperAppAdmin, isTestEnv, isTestOrDevEnv } from "@common/utils/environments";
 import { getCSSVariable } from "@common/utils/styles";
 import { colourToHex } from "@common/utils/colour";
 import { Link } from "@common/components/ui/Link";
 import { pathEndsWith } from "@common/utils/url";
-import InboxIcon from "@mui/icons-material/Inbox";
 import { getNameInitials } from "@common/utils/stringManipulation";
 import CollapsibleMenuIcon from "../dynamicSVGIcons/CollapsibleMenuIcon";
 
@@ -322,7 +314,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
                   arrowColour={arrowColour}
                   disabled={expanded}
                 >
-                  <SettingsOutlined sx={{ fontSize: iconSize }} />
+                  <Settings className="h-4 w-4" style={{ fontSize: iconSize }} />
                   {expanded && <div className={menuItemsClass}>Settings</div>}
                 </TooltipWrapper>
               </Link>
@@ -375,7 +367,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
                   arrowColour={arrowColour}
                   disabled={expanded}
                 >
-                  <LogoutOutlined sx={{ fontSize: iconSize, rotate: "180deg" }} />
+                  <LogOut className="h-4 w-4" style={{ fontSize: iconSize, rotate: "180deg" }} />
                   {expanded && <div className={menuItemsClass}>Sign Out</div>}
                 </TooltipWrapper>
               </li>
@@ -391,14 +383,14 @@ const SideMenu: React.FC<SideMenuProps> = ({
                     <div className="flex w-full items-center justify-center">
                       <div className="grid" style={{ display: "grid", gridTemplateColumns: "auto 1fr", gridTemplateRows: "auto auto", gap: "5px" }}>
                         <div className="flex items-center gap-x-1">
-                          <PermIdentityOutlinedIcon sx={{ fontSize: iconSize }} />
+                          <User className="h-4 w-4" style={{ fontSize: iconSize }} />
                           <h2 className="text-base font-bold">{userObj?.firstName + " " + userObj?.lastName}</h2>
                         </div>
                         <div style={{ gridRow: "2 / 3" }}>
                           <p>{userObj?.email}</p>
                         </div>
                         <div className="flex items-center gap-x-1 pt-1" style={{ gridColumn: "1 / 2" }}>
-                          <CorporateFareOutlinedIcon sx={{ fontSize: iconSize }} />
+                          <Building className="h-4 w-4" style={{ fontSize: iconSize }} />
                           <h2 className="text-base">{userObj?.office?.name}</h2>
                         </div>
                       </div>
@@ -474,7 +466,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
                     transform: expanded ? "rotate(0deg)" : "rotate(180deg)",
                   }}
                 >
-                  <ArrowBackIosNewOutlinedIcon className="-m-[2px]" sx={{ fontSize: 20 }} />
+                  <ChevronLeft className="-m-[2px] h-5 w-5" style={{ fontSize: 20 }} />
                 </div>
               </div>
             </div>

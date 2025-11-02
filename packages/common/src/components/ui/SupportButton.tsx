@@ -1,6 +1,6 @@
-import { useUserUnengaged } from '../../hooks/useUserUnengage';
-import { cn } from '../../lib/utils';
-import { HelpOutlineOutlined } from "@mui/icons-material";
+import { useUserUnengaged } from "../../hooks/useUserUnengage";
+import { cn } from "../../lib/utils";
+import { HelpCircle } from "lucide-react";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { HREFLink } from "./HREFLink";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
@@ -66,7 +66,7 @@ export const SupportButton = forwardRef<HTMLDivElement, SupportButtonProps>(
             }}
           >
             <div className={cn("", menuItemsOutlineClass, "w-full")}>
-              <HelpOutlineOutlined sx={{ fontSize: iconSize }} />
+              <HelpCircle className="h-6 w-6" style={{ fontSize: iconSize }} />
               {expanded && <div className={menuItemsClass}>Help</div>}
             </div>
           </PopoverTrigger>

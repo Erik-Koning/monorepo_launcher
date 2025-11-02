@@ -5,7 +5,7 @@ import { isBackdoorLogin, isPermissibleBackdoorEmail } from "@/packages/common/s
 import { verifyOTP } from "@/src/lib/server/verifyOTP";
 import bcrypt from "bcryptjs";
 
-type User = {name: string, email: string, office: {name: string}};
+type User = { name: string; email: string; office: { name: string } };
 
 export async function authenticateUser(
   req: reqTypes,
@@ -19,7 +19,7 @@ export async function authenticateUser(
   debug: boolean = false
 ): Promise<User | null> {
   const loginTime = new Date();
-  const IP = getIpAddress(req, debug); //works for nextRequest, APIGatewayevent, and NextAuth request obj
+  const IP = getIpAddress(req, debug); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
   const IPCounty = getReqCountry(req, debug);
   const IPLatLong = getReqLatLong(req);
   let userToReturn: User | string | null | undefined = undefined;
@@ -40,7 +40,7 @@ export async function authenticateUser(
   //console.log("***************** credentials", credentials);
   // if user is a string, it is an email
   if (typeof user === "string") {
-      user = {name: "John Doe", email: user, office: {name: "Office 1"}};
+    user = { name: "John Doe", email: user, office: { name: "Office 1" } };
   }
 
   debug && console.log("***************** user after fetch", user);
@@ -51,7 +51,7 @@ export async function authenticateUser(
     return null;
   }
 
-  let userData = {name: "John Doe", email: user.email, office: {name: "Office 1"}};
+  let userData = { name: "John Doe", email: user.email, office: { name: "Office 1" } };
 
   /*
    * Check if IP and IPCountry is allowed
@@ -105,7 +105,7 @@ export async function authenticateUser(
     }
   } else {
     // Default case, the user passed a password
-    if (!((user as any)?.hpId)) {
+    if (!(user as any)?.hpId) {
       //TODO add rate limit check on user
       return null;
     }
@@ -148,7 +148,7 @@ export async function authenticateUser(
   // If we are authenticating a backdoor user, we need to return the user object later
   if (backdoorUser && userToReturn && typeof userToReturn === "string") {
     //We are authenticating a backdoor user, so we need to return the user object later
-    userToReturn = {name: "John Doe", email: userToReturn, office: {name: "Office 1"}};
+    userToReturn = { name: "John Doe", email: userToReturn, office: { name: "Office 1" } };
     if (!userToReturn) {
       debug && console.log("***************** userToReturn not found", userToReturn);
       return null;
@@ -169,7 +169,7 @@ export async function authenticateUser(
   if (Object.keys(userData).length > 0) {
     // We made it, save this login dateTime
     //Normal user update and return the user object
-    const updatedUser = {name: "John Doe", email: userToReturn.email, office: {name: "Office 1"}};
+    const updatedUser = { name: "John Doe", email: userToReturn.email, office: { name: "Office 1" } };
     /*await prisma.user.update({
       where: {
         id: userToReturn.id,

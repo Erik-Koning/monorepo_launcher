@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useEffect } from "react";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { Check } from "lucide-react";
 
 const BorderVariants = cva("", {
   variants: {
@@ -50,7 +50,7 @@ export const Border = forwardRef<HTMLDivElement, BorderProps>(({ key, onToggleHa
       {props.children}
       {markSelected && selected && (
         <div className="absolute right-[-16px] top-[-18px] rounded-full bg-white p-[1px] opacity-100 outline outline-[2px] outline-purple">
-          <CheckRoundedIcon className="p-[1px] text-purple opacity-100" />
+          <Check className="h-4 w-4 p-[1px] text-purple opacity-100" />
         </div>
       )}
     </div>

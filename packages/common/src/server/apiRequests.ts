@@ -177,7 +177,7 @@ export interface userIPs {
 }
 
 export function generateNewIPDetails(req: reqTypes, verified?: boolean): userIPs {
-  const IP = getIpAddress(req); //works for nextRequest, APIGatewayevent, and NextAuth request obj
+  const IP = getIpAddress(req); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
   const IPCounty = getReqCountry(req);
   const IPCity = getReqCity(req);
   const IPRegion = getReqCountryRegion(req);

@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ParapgraphWithDifferenceBrackets } from "./ParagraphWithDifferentBrackets";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Info } from "lucide-react";
 import { HoverCardClickable } from "../inputs/HoverCardClickable";
 import { Label } from "./Label";
 import { Link } from "./Link";
@@ -116,7 +116,7 @@ export const Heading = forwardRef<HTMLDivElement, HeadingProps>(
               sideOffset={2}
               //forceOpen={true}
               triggerClassName="flex"
-              triggerJSX={<InfoOutlinedIcon style={{ fontSize: 18 }} className="text-tertiary-dark" />}
+              triggerJSX={<Info className="h-[18px] w-[18px] text-tertiary-dark" style={{ fontSize: 18 }} />}
             >
               <Label variant={"default"} className="p-1.5 bg-primary-light rounded-sm">
                 {info}

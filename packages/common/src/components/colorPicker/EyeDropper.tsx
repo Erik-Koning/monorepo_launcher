@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { Button } from "../ui/Button";
 
-import ColorizeOutlinedIcon from "@mui/icons-material/ColorizeOutlined";
-import { cn } from '../../lib/utils';
+import { cn } from "../../lib/utils";
+import { Pipette } from "lucide-react";
 
 interface EyeDropperProps {
   showPickedColor?: boolean;
@@ -57,7 +57,7 @@ const EyeDropper: FC<EyeDropperProps> = ({ showPickedColor = true, className, bu
         </div>
       )}
       <Button variant="ghost" className={cn("rounded-md p-1.5", buttonClassNames)} onClick={handleColorPick}>
-        <ColorizeOutlinedIcon sx={{ fontSize: iconSize }} />
+        <Pipette className="h-4.5 w-4.5" style={{ fontSize: iconSize }} />
       </Button>
     </div>
   );

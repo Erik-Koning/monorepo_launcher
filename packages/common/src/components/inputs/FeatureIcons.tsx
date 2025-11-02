@@ -3,9 +3,8 @@
 import * as React from "react";
 
 import { HoverCardClickable } from "./HoverCardClickable";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import { cn } from '../../lib/utils';
+import { ChevronRight, ChevronsRight } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 interface FeatureIconsProps {
   tooltipText: string;
@@ -27,9 +26,9 @@ export const FeatureIcons = React.forwardRef<HTMLDivElement, FeatureIconsProps>(
         triggerJSX={(() => {
           return numRelated > 0 ? (
             numRelated === 1 ? (
-              <KeyboardArrowRightIcon sx={{ fontSize: iconSize }} className={iconClassName} />
+              <ChevronRight className="h-4 w-4" style={{ fontSize: iconSize }} />
             ) : (
-              <KeyboardDoubleArrowRightIcon sx={{ fontSize: iconSize }} className={iconClassName} />
+              <ChevronsRight className="h-4 w-4" style={{ fontSize: iconSize }} />
             )
           ) : null;
         })()}

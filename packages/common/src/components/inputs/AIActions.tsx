@@ -1,10 +1,10 @@
 "use client";
 
-import { NotesOutlined as Text, DoneAll, ShortText, ShortcutOutlined } from "@mui/icons-material";
+import { FileText, CheckCheck, Type, Command } from "lucide-react";
 import { Ref, useState } from "react";
-import { Textarea } from '../../components/ui/textarea';
-import { cn } from '../../lib/utils';
-import { useAutoResizeTextarea } from '../../hooks/useAutoResizeTextarea';
+import { Textarea } from "../../components/ui/textarea";
+import { cn } from "../../lib/utils";
+import { useAutoResizeTextarea } from "../../hooks/useAutoResizeTextarea";
 import { Button } from "../ui/Button";
 
 const MIN_HEIGHT = 96;
@@ -12,7 +12,7 @@ const MIN_HEIGHT = 96;
 const ITEMS = [
   {
     text: "Summary",
-    icon: Text,
+    icon: FileText,
     colors: {
       icon: "text-orange-600",
       border: "border-orange-500",
@@ -21,7 +21,7 @@ const ITEMS = [
   },
   {
     text: "Fix Spelling and Grammar",
-    icon: DoneAll,
+    icon: CheckCheck,
     colors: {
       icon: "text-emerald-600",
       border: "border-emerald-500",
@@ -30,7 +30,7 @@ const ITEMS = [
   },
   {
     text: "Make shorter",
-    icon: ShortText,
+    icon: Type,
     colors: {
       icon: "text-purple-600",
       border: "border-purple-500",
@@ -81,12 +81,7 @@ export default function AIActions() {
             }}
           />
           <Button className="absolute right-3 top-3" variant="ghost">
-            <ShortcutOutlined
-              className={cn(
-                " h-4 w-4 rotate-90 transition-all duration-200 dark:text-white",
-                inputValue ? "scale-100 opacity-100" : "scale-95 opacity-30"
-              )}
-            />
+            <Command className="h-4 w-4 rotate-90 transition-all duration-200 dark:text-white" style={{ fontSize: 16 }} />
           </Button>
           {currentItem && (
             <div className="absolute bottom-3 left-3">

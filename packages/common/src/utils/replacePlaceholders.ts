@@ -156,8 +156,8 @@ export function replacePlaceholders(
 
     /*if (
       template ===
-        "Thank you for the referral of {patient_firstName} {patient_lastName}. It was a pleasure to meet with {patient_pronouns</1>} and I appreciate the opportunity to be involved in {patient_pronouns</2> === Hers ? Her : {patient_pronouns</2> === Theirs ? Their : {patient_pronouns</2>}}} treatment. Please see below for summary of our appointment. More information can be found on additional pages/attachments as applicable." ||
-      template === "{patient_pronouns</0> === 'They' ? 'Dr. Smith' : 'Dr. Smitha'}"
+        "Thank you for the referral of {client_firstName} {client_lastName}. It was a pleasure to meet with {client_pronouns</1>} and I appreciate the opportunity to be involved in {client_pronouns</2> === Hers ? Her : {client_pronouns</2> === Theirs ? Their : {client_pronouns</2>}}} treatment. Please see below for summary of our appointment. More information can be found on additional pages/attachments as applicable." ||
+      template === "{client_pronouns</0> === 'They' ? 'Dr. Smith' : 'Dr. Smitha'}"
     )
       //debugger;
       */
@@ -187,7 +187,7 @@ export function replacePlaceholders(
       //loop over each referenced field and replace it with the data
       const match = template.substring(fieldIndicies[i][0], fieldIndicies[i][1] + 1);
 
-      if (match === "{patient_pronouns</2> === Hers ? Her : {patient_pronouns</2>} === Theirs ? Their : {patient_pronouns</2>}}") {
+      if (match === "{client_pronouns</2> === Hers ? Her : {client_pronouns</2>} === Theirs ? Their : {client_pronouns</2>}}") {
         //debugger;
       }
 
@@ -262,7 +262,7 @@ export function replacePlaceholders(
   }
 }
 
-//removes leading tags such as <Regular Follow-up and Treatment> inside "<Regular Follow-up and Treatment>Please continue to see {patient_firstName} for reg"
+//removes leading tags such as <Regular Follow-up and Treatment> inside "<Regular Follow-up and Treatment>Please continue to see {client_firstName} for reg"
 export const removeLeadingShortformTags = (str: string): string => {
   return str.replace(/^<.*?>/, "");
 };

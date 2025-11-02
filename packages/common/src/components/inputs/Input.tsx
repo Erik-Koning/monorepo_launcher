@@ -5,8 +5,7 @@ import autofillTooltipText from "../../utils/autofillTooltipText";
 import camelOrSnakeToTitleCase from "../../utils/camelOrSnakeToTitleCase";
 import { generateEvent } from "../../utils/objectManipulation";
 import { formatPhoneNumberAmerica } from "../../utils/stringManipulation";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { EyeOff, Eye } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { EditIcon } from "lucide-react";
 import React, { ReactElement, ReactNode, useCallback, useEffect, useRef, useState } from "react";
@@ -769,9 +768,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   }}
                 >
                   {showPassword ? (
-                    <VisibilityOutlinedIcon sx={{ fontSize: 17 }} />
+                    <Eye className="h-4.25 w-4.25" style={{ fontSize: 17 }} />
                   ) : (
-                    <VisibilityOffOutlinedIcon sx={{ fontSize: 17, transform: "scaleX(-1)" }} />
+                    <EyeOff className="h-4.25 w-4.25" style={{ fontSize: 17, transform: "scaleX(-1)" }} />
                   )}
                 </Button>
               )}
