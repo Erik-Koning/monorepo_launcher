@@ -10,9 +10,7 @@
     "with-env": "dotenv -e ../../.env --",
     "dev": "pnpm with-env email dev"
   },
-  "devDependencies": {
-    "react-email": "4.0.7"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@shared/tailwind-config": "workspace:*",
     "@shared/typescript-config": "workspace:*",
