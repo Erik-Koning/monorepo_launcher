@@ -118,15 +118,15 @@ export function FloatingNavbar({ position = "fixed", variant, shape, className, 
           {/* Left side - Logo and Main Title */}
           {logoSrc && (
             <div className="flex items-center gap-2">
-              <Image src={logoSrc} className="mx-4" alt="Vesta Investment Advisory Copilot" width={32} height={32} />
+              <Image src={logoSrc} className="mx-4" alt="" width={32} height={32} />
               <h1 className={cn("text-2xl font-semibold", textVariants({ variant }))}>Hello World</h1>
             </div>
           )}
 
           {/* Left side - Sub-heading and Description */}
           <div className="flex flex-col pt-2">
-            <h1 className={cn("text-lg font-semibold leading-tight", textVariants({ variant }))}>Vesta Investment Advisory Copilot</h1>
-            <p className={cn("text-xs", mutedTextVariants({ variant }))}>Agentic AI-Powered Investment Planning</p>
+            <h1 className={cn("text-lg font-semibold leading-tight", textVariants({ variant }))}>Test</h1>
+            <p className={cn("text-xs", mutedTextVariants({ variant }))}>Sub test</p>
           </div>
         </div>
 
@@ -134,20 +134,6 @@ export function FloatingNavbar({ position = "fixed", variant, shape, className, 
           {/* Right side content */}
           {/* Right side - Icon with Popup */}
           <div className="relative">
-            <button
-              onClick={handleIconClick}
-              onMouseEnter={handleIconHover}
-              className={cn(
-                "p-2.5 rounded-full transition-all duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                accentVariants({ variant }),
-                isPopupOpen && (variant === "black" ? "bg-white/10" : "bg-accent")
-              )}
-              aria-label="View backend logs"
-            >
-              <Activity className={cn("w-5 h-5", textVariants({ variant }))} />
-            </button>
-
             {/* Popup */}
             {isPopupOpen && (
               <div className={cn("relative flex flex-col", popupVariants({ variant }))} onMouseLeave={() => !isLocked && setIsPopupOpen(false)}>

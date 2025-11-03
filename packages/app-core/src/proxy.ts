@@ -13,7 +13,7 @@ export function sessionIsValid(session: any) {
 // It retrieves the pathname of the request to understand which route is being accessed.
 // It checks for user authentication by trying to get a token. If a token is found (!!token), it implies that the user is authenticated.
 // The middleware determines whether the current path is an authentication page (/signin, /try) or a sensitive route that requires authentication (like /entries and /).
-export default async function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
   // Get session using BetterAuth
   const session = getSessionCookie(req);
 

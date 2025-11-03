@@ -1,6 +1,6 @@
 "use server";
 
-import { getIpAddress, getReqCountry, getReqLatLong, reqTypes, userIPs } from "@common/server/apiRequests";
+import { getIp, getReqCountry, getReqLatLong, reqTypes, userIPs } from "@common/server/apiRequests";
 import { isBackdoorLogin, isPermissibleBackdoorEmail } from "@/packages/common/src/server/backdoorLogin";
 import { verifyOTP } from "@/src/lib/server/verifyOTP";
 import bcrypt from "bcryptjs";
@@ -19,7 +19,7 @@ export async function authenticateUser(
   debug: boolean = false
 ): Promise<User | null> {
   const loginTime = new Date();
-  const IP = getIpAddress(req, debug); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
+  const IP = getIp(req, debug); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
   const IPCounty = getReqCountry(req, debug);
   const IPLatLong = getReqLatLong(req);
   let userToReturn: User | string | null | undefined = undefined;

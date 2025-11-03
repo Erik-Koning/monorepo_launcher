@@ -8,11 +8,11 @@
     "lint": "biome check --write",
     "dev": "pnpm --filter app-core dev",
     "build": "pnpm --filter app-core build",
+    "start": "pnpm --filter app-core start",
     "test": "jest",
     "test2": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js",
     "test:watch": "jest --watch",
     "buildStart": "next build && next start",
-    "start": "next start",
     "prepare": "husky",
     "format": "prettier --write ./packages/app-core"
   },

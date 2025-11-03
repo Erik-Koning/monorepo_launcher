@@ -5,15 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { validateToken } from "./validateToken";
 import { cloneDeep } from "lodash";
 import { loggingAPIcall } from "../../../../common/src/utils/logging";
-import {
-  denyCountries,
-  getIpAddress,
-  getReqCountry,
-  isGetRequest,
-  isNextRequest,
-  serveCountries,
-  userIPs,
-} from "../../../../common/src/server/apiRequests";
+import { denyCountries, getIp, getReqCountry, isGetRequest, isNextRequest, serveCountries, userIPs } from "../../../../common/src/server/apiRequests";
 import { isDevEnv, isProdEnv } from "../../../../common/src/utils/environments";
 import { backdoorGetUserByEmail } from "../../../../common/src/server/backdoorLogin";
 import { retryPromise } from "../../../../common/src/utils/errors";
@@ -68,7 +60,7 @@ export async function validateUser(
     const RLCountMax = 100; //X requests
     const RLCountBlock = RLCountMax * 1.5; //X requests
     const RLWindow = 60000; //X milliseconds
-    const ip = getIpAddress(req); //can also validate the user is doing this request from an allowed IP address form their account settings
+    const ip = getIp(req); //can also validate the user is doing this request from an allowed IP address form their account settings
     const ipCountry = getReqCountry(req); //true for debug
     const reqIsNextRequest: boolean = isNextRequest(req);
     //console.log("validateUser", req);
@@ -118,7 +110,7 @@ export async function validateUser(
       // is a NextRequest
       // get the session using BetterAuth
       const session = await auth.api.getSession({
-        headers: (req as NextRequest).headers,
+        headers: (req as unknown as NextRequest).headers,
       });
       if (session?.user) {
         authToken = {

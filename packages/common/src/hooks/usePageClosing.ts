@@ -1,39 +1,28 @@
-import { RefObject, useEffect } from "react";
-import Router from "next/router";
+import { useEffect } from "react";
 
 export function usePageClosing(callback: (ev: Event) => void, enable = true) {
   useEffect(() => {
     if (!enable) return;
 
-    const handler = () => {
-      if (!window.confirm("HEy! Are you sure you want to leave?")) {
-        throw "Route Canceled";
+    // The 'beforeHistoryChange' event from next/router is not available in the App Router.
+    // This hook now relies on standard browser events to detect when a page is closing.
+    const handleEvent = (ev: Event) => {
+      // For visibilitychange, only trigger the callback when the page is hidden.
+      if (ev.type === "visibilitychange" && document.visibilityState !== "hidden") {
+        return;
       }
+      callback(ev);
     };
 
-    Router.events.on("beforeHistoryChange", callback);
-    window.addEventListener("unload", (ev: Event) => {
-      callback(ev);
-    });
-    window.addEventListener("pagehide", (ev: Event) => {
-      callback(ev);
-    });
-    document.addEventListener("visibilitychange", (ev: Event) => {
-      callback(ev);
-    });
+    window.addEventListener("unload", handleEvent);
+    window.addEventListener("pagehide", handleEvent);
+    document.addEventListener("visibilitychange", handleEvent);
 
     return () => {
-      // Unbind the event listeners and clear timeout on clean up
-      window.removeEventListener("unload", (ev: Event) => {
-        callback(ev);
-      });
-      window.removeEventListener("pagehide", (ev: Event) => {
-        callback(ev);
-      });
-      document.removeEventListener("visibilitychange", (ev: Event) => {
-        callback(ev);
-      });
-      Router.events.off("beforeHistoryChange", callback);
+      // Unbind the event listeners on clean up
+      window.removeEventListener("unload", handleEvent);
+      window.removeEventListener("pagehide", handleEvent);
+      document.removeEventListener("visibilitychange", handleEvent);
     };
   }, [callback, enable]);
 }

@@ -1,5 +1,4 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { NextRouter } from "next/router";
 import { getValueFromPath } from "./objBasedExpressionEvaluation";
 import { appendURLParams } from "./url";
 import { isNullOrUndefined } from "./booleansAndNullable";
@@ -32,67 +31,21 @@ export const fullPageReload = (url?: string) => {
   window.location.replace(url || window.location.href);
 };
 
-//By default keep the current query params, unless an empty object is passed in or replace with a new object
-export const navigateToPath = (router?: NextRouter | AppRouterInstance, path?: string, queryParams?: Record<string, string>, e?: any) => {
-  //If the URL points to a page outside your Next.js app or if you deliberately want a full page reload, you can use window.location.href = url or window.location.assign(url).
-  if (!path) {
-    RefreshWindow();
-    return;
+/**
+ * Navigates to a new path using the provided router instance.
+ * It supports both App Router and Pages Router instances.
+ * If no router is provided, it falls back to window.location.href.
+ * @param router - Optional NextRouter or AppRouterInstance for navigation.
+ * @param path - The path to navigate to.
+ */
+export function navigateToPath(router: AppRouterInstance | undefined, path?: string) {
+  if (!path) return;
+  if (router) {
+    router.push(path);
+  } else if (typeof window !== "undefined") {
+    window.location.href = path;
   }
-
-  // If Cmd (Mac) or Ctrl (Windows/Linux) key is pressed, open in a new tab
-  if (e?.metaKey || e?.ctrlKey) {
-    window.open(path, "_blank");
-    return;
-  }
-
-  const [pathWithoutQuery, queryString] = path.split("?");
-  const pathParams = new URLSearchParams(queryString || "");
-
-  // Start building the final query params
-  const finalParams = new URLSearchParams();
-
-  // keep the current ones always
-  const currentQueryParams = new URLSearchParams(window.location.search);
-  currentQueryParams.forEach((value, key) => {
-    finalParams.set(key, value);
-  });
-
-  // Overlay params from the path string itself. These take precedence.
-  if (queryParams === undefined) {
-    pathParams.forEach((value, key) => {
-      finalParams.set(key, value);
-    });
-  } else {
-    // Otherwise, use the provided queryParams object as the new base
-    Object.entries(queryParams).forEach(([key, value]) => {
-      if (isNullOrUndefined(value)) {
-        //remove the key from the finalParams
-        finalParams.delete(key);
-      }
-      finalParams.set(key, value);
-    });
-  }
-
-  const finalQueryString = finalParams.toString();
-  const finalPath = finalQueryString ? `${pathWithoutQuery}?${finalQueryString}` : pathWithoutQuery;
-
-  // Step 3: Compare to see if navigation is needed
-  const isSamePath = window.location.pathname === pathWithoutQuery;
-  const isSameQuery = new URLSearchParams(window.location.search).toString() === finalQueryString;
-
-  if (isSamePath && isSameQuery) {
-    RefreshWindow();
-    return;
-  } else {
-    // Navigate to the new path
-    if (router) {
-      router.push(finalPath);
-    } else {
-      window.location.href = finalPath;
-    }
-  }
-};
+}
 
 export const setTextSelected = (element: HTMLElement | string | undefined, start?: number, end?: number) => {
   if (!element) return;

@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@common/components/ui/avatar";
 import { cn } from "@common/lib/utils";
-import { Popover } from "@mui/material";
 import { PopoverContent, PopoverTrigger } from "@common/components/ui/popover";
 import { SupportButton } from "@common/components/ui/SupportButton";
 import { Button } from "@common/components/ui/Button";

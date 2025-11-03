@@ -53,7 +53,7 @@ export function TabbedNavigation({ tabs, className }: TabbedNavigationProps) {
               {activeTab === tab.id && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-background rounded-xl shadow-sm border border-border/50 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-red-500 after:rounded-full"
+                  className="absolute inset-0 bg-background rounded-xl shadow-sm border border-border/50 after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-flare after:rounded-full"
                   transition={{
                     type: "spring",
                     stiffness: 500,

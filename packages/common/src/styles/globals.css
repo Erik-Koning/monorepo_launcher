@@ -68,6 +68,7 @@
 
     --ring: 215 20.2% 65.1%;
 
+    --flare: #4367b5;
     --radius: 0.5rem;
     --offBlack: #262626;
     --danger: 3 92% 63%;
@@ -90,8 +91,8 @@
     --green: #0eb24a;
     --greenEnergetic: #01ff39;
     --lightGreen: #71dd8f;
-    --muteGreen: #F0F9F3;
-    --faintGreen: #F7FFF8;
+    --muteGreen: #f0f9f3;
+    --faintGreen: #f7fff8;
   }
 
   .dark {

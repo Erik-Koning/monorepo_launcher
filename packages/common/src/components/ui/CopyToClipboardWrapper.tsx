@@ -4,7 +4,6 @@ import ClipboardJS from "clipboard";
 import * as React from "react";
 import { Copy, Check } from "lucide-react";
 import { Button, buttonVariants } from "./Button";
-import { fontSize } from "@mui/system";
 import { TooltipWrapper } from "./TooltipWrapper";
 import { cn } from "../../lib/utils";
 

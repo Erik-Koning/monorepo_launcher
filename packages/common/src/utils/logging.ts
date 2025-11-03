@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getIpAddress, isNextRequest } from "../server/apiRequests";
+import { getIp, isNextRequest } from "../server/apiRequests";
 import { substituteKeyValues } from "./objectManipulation";
 
 export const consoleDotLog = <T = unknown>(anything: any): T extends unknown ? typeof anything : T => {

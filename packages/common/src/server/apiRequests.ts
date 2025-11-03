@@ -34,23 +34,19 @@ export type reqTypes =
   | NextRequest
   | {
       [key: string]: any;
-      headers?: Record<string, string> | undefined;
+      headers?: Record<string, string> | Headers | undefined;
     };
 
-export function getIpAddress(req: reqTypes, debug: boolean = false): string {
-  if (debug) console.info("req in getIpAddress", req);
-  if (isNextRequest(req)) {
-    if (debug) console.info("getIpAddress in NextRequest", req.headers.get("x-forwarded-for"));
-    // Running in Next.js environment
-    // Try some common headers first, then fallback to req.ip
-    const xForwardedFor = req.headers.get("x-forwarded-for");
-    const xRealIp = req.headers.get("x-real-ip");
-    // req.ip is also available in NextRequest (>= Next 13.0),
-    // but might not always be set, so we check headers first
-    if (debug) console.info("getIpAddress in NextRequest", xForwardedFor, xRealIp, req.headers.get("x-forwarded-for"));
-    return xForwardedFor ?? xRealIp ?? req.headers.get("x-forwarded-for") ?? "Unknown IP";
+export function getIp(req: reqTypes, debug: boolean = false): string {
+  if (debug) console.info("getIp in getIp", req);
+  const headers = req?.headers;
+  if (!headers) {
+    return "Unknown IP";
   }
-  return req?.headers?.["x-forwarded-for"] ?? "Unknown IP";
+  if (headers instanceof Headers) {
+    return headers.get("x-forwarded-for") ?? "Unknown IP";
+  }
+  return headers["x-forwarded-for"] ?? "Unknown IP";
 }
 
 //Returns the ISO 3166-1 alpha-2 country code
@@ -78,44 +74,57 @@ export function getReqCountry(req: reqTypes, debug: boolean = false): string {
   } else {
     // Fallback if neither APIGatewayProxyEventV2 nor NextRequest
     // Possibly look at a custom country header if you have one
+    const headers = req?.headers;
+    if (!headers) {
+      return "";
+    }
+
+    const getHeader = (key: string) => {
+      if (headers instanceof Headers) {
+        return headers.get(key);
+      }
+      return headers[key];
+    };
+
     if (debug)
       console.info(
         "getReqCountry in fallback",
-        req?.headers?.["x-open-next-country"],
-        req?.headers?.["cloudfront-viewer-country"],
-        req?.headers?.["CloudFront-Viewer-Country"],
-        req?.headers?.["x-country"],
-        req?.headers?.["x-vercel-ip-country"]
+        getHeader("x-open-next-country"),
+        getHeader("cloudfront-viewer-country"),
+        getHeader("CloudFront-Viewer-Country"),
+        getHeader("x-country"),
+        getHeader("x-vercel-ip-country")
       );
     const fallbackCountry =
-      req?.headers?.["x-open-next-country"] ||
-      req?.headers?.["cloudfront-viewer-country"] ||
-      req?.headers?.["CloudFront-Viewer-Country"] ||
-      req?.headers?.["x-country"] ||
-      req?.headers?.["x-vercel-ip-country"];
+      getHeader("x-open-next-country") ||
+      getHeader("cloudfront-viewer-country") ||
+      getHeader("CloudFront-Viewer-Country") ||
+      getHeader("x-country") ||
+      getHeader("x-vercel-ip-country");
 
     return fallbackCountry ?? "";
   }
 }
 
 /**
- * Looks for city name in known headers:
- * - AWS CloudFront can pass custom city headers if configured, but there's no default.
- * - Vercel might pass x-vercel-ip-city
- * - Or you might define your own custom header, e.g. x-city
+ * Returns the city of the request.
  */
 export function getReqCity(req: reqTypes): string {
-  if (isNextRequest(req)) {
-    // Vercel's typical city header:
-    const city = req.headers.get("x-open-next-city") || req.headers.get("cloudfront-viewer-city");
-    // If using CloudFront or a custom geolocation header in Next:
-    // const cityCF = req.headers.get("CloudFront-Viewer-City");
-    return city ?? "";
-  } else {
-    // Fallback for any custom scenario
-    const fallbackCity = req?.headers?.["x-city"] || req?.headers?.["x-open-next-city"] || req?.headers?.["cloudfront-viewer-city"];
-    return fallbackCity ?? "";
+  const headers = req?.headers;
+  if (!headers) {
+    return "";
   }
+
+  const getHeader = (key: string) => {
+    if (headers instanceof Headers) {
+      return headers.get(key);
+    }
+    return headers[key];
+  };
+
+  const city = getHeader("x-open-next-city") || getHeader("cloudfront-viewer-city") || getHeader("x-city");
+
+  return city ?? "";
 }
 
 /**
@@ -125,43 +134,44 @@ export function getReqCity(req: reqTypes): string {
  * - On AWS, you might pass a custom "CloudFront-Viewer-Region" if using geolocation at distribution level.
  */
 export function getReqCountryRegion(req: reqTypes): string {
-  if (isNextRequest(req)) {
-    // Vercel might pass "x-vercel-ip-country-region" if you have a special config or edge function
-    // There's no official built-in region header for the visitor, so you might define your own
-    const region =
-      req.headers.get("x-open-next-country-region") ||
-      req.headers.get("cloudfront-viewer-country-region") ||
-      req.headers.get("Cloudfront-Viewer-Country-Region") ||
-      req.headers.get("x-vercel-ip-country-region");
-    return region ?? "";
-  } else {
-    // Fallback if neither APIGatewayProxyEventV2 nor NextRequest
-    // Possibly you define your own "x-region" or "x-vercel-ip-country-region"
-    const fallbackRegion =
-      req?.headers?.["x-open-next-country-region"] ||
-      req?.headers?.["cloudfront-viewer-country-region"] ||
-      req.headers?.["Cloudfront-Viewer-Country-Region"] ||
-      req?.headers?.["x-region"] ||
-      req?.headers?.["x-vercel-ip-country-region"];
-
-    return fallbackRegion ?? "";
+  const headers = req?.headers;
+  if (!headers) {
+    return "";
   }
+
+  const getHeader = (key: string) => {
+    if (headers instanceof Headers) {
+      return headers.get(key);
+    }
+    return headers[key];
+  };
+
+  const region =
+    getHeader("x-open-next-country-region") ||
+    getHeader("cloudfront-viewer-country-region") ||
+    getHeader("Cloudfront-Viewer-Country-Region") ||
+    getHeader("x-vercel-ip-country-region") ||
+    getHeader("x-region");
+
+  return region ?? "";
 }
 
 export function getReqLatLong(req: reqTypes): string {
-  let lat = "";
-  let long = "";
-  if (isNextRequest(req)) {
-    // Vercel might pass "x-vercel-ip-country-region" if you have a special config or edge function
-    // There's no official built-in region header for the visitor, so you might define your own
-    lat = (req.headers.get("x-open-next-latitude") || req.headers.get("cloudfront-viewer-latitude")) ?? "";
-    long = (req.headers.get("x-open-next-longitude") || req.headers.get("cloudfront-viewer-longitude")) ?? "";
-  } else {
-    // Fallback if neither APIGatewayProxyEventV2 nor NextRequest
-    // Possibly you define your own "x-region" or "x-vercel-ip-country-region"
-    lat = (req?.headers?.["x-open-next-latitude"] || req?.headers?.["cloudfront-viewer-latitude"]) ?? "";
-    long = (req?.headers?.["x-open-next-longitude"] || req?.headers?.["cloudfront-viewer-longitude"]) ?? "";
+  const headers = req?.headers;
+  if (!headers) {
+    return "";
   }
+
+  const getHeader = (key: string) => {
+    if (headers instanceof Headers) {
+      return headers.get(key);
+    }
+    return headers[key];
+  };
+
+  const lat = (getHeader("x-open-next-latitude") || getHeader("cloudfront-viewer-latitude")) ?? "";
+  const long = (getHeader("x-open-next-longitude") || getHeader("cloudfront-viewer-longitude")) ?? "";
+
   if (!lat && !long) return "";
   return lat + "," + long;
 }
@@ -177,7 +187,7 @@ export interface userIPs {
 }
 
 export function generateNewIPDetails(req: reqTypes, verified?: boolean): userIPs {
-  const IP = getIpAddress(req); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
+  const IP = getIp(req); //works for nextRequest, APIGatewayevent, and BetterAuth request obj
   const IPCounty = getReqCountry(req);
   const IPCity = getReqCity(req);
   const IPRegion = getReqCountryRegion(req);

@@ -1,5 +1,4 @@
-import { formatPhoneNumberAmerica, hexToRgb } from '../../utils/stringManipulation';
-import { rgbToHex } from "@mui/system";
+import { formatPhoneNumberAmerica, hexToRgb } from "../../utils/stringManipulation";
 import { Image, Rect, StyleSheet, Svg, Text, View } from "@react-pdf/renderer";
 import React from "react";
 

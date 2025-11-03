@@ -107,6 +107,7 @@ export const configWithoutExtensions: Omit<Config, "content"> = {
         "radial-gradient-blob-3": "radial-gradient(circle, rgba(144, 238, 144, 0.3) 0%, transparent 70%)",
       },
       colors: {
+        flare: "var(--flare)",
         offBlack: "var(--offBlack)",
         outerspace: "#354445",
         skyBlue: "var(--skyBlue)",

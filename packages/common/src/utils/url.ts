@@ -1,5 +1,4 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { NextRouter } from "next/router";
 import { navigateToPath } from "./DOM";
 import { currentUrl } from "./window";
 import { ensureUniqueDelimiterBetweenStrings } from "./stringManipulation";
@@ -77,7 +76,7 @@ export function removeURLParams(path: string, paramKeys: string[]): string {
   return urlParams.toString() ? `${basePath}?${urlParams.toString()}` : basePath;
 }
 
-export function navigateToURL(router?: NextRouter | AppRouterInstance, path?: string, keepParams: Record<string, string> | boolean = true) {
+export function navigateToURL(router?: AppRouterInstance, path?: string, keepParams: Record<string, string> | boolean = true) {
   if (keepParams === false) {
     //navigate without params
     navigateToPath(router, path);
@@ -90,13 +89,13 @@ export function navigateToURL(router?: NextRouter | AppRouterInstance, path?: st
   }
 }
 
-export function navigateToURLWithParams(router?: NextRouter | AppRouterInstance, path?: string, paramObj: Record<string, string> = getURLParams()): void {
+export function navigateToURLWithParams(router?: AppRouterInstance, path?: string, paramObj: Record<string, string> = getURLParams()): void {
   const newPath = appendURLParams(path ?? currentUrl(), paramObj);
 
   navigateToPath(router, newPath);
 }
 
-export function navigateToUrlKeepParams(router?: NextRouter | AppRouterInstance, path?: string, additionalParams?: Record<string, string>): void {
+export function navigateToUrlKeepParams(router?: AppRouterInstance, path?: string, additionalParams?: Record<string, string>): void {
   //extract the query params from the current path
   const currentQueryParams = getURLParams();
 
@@ -128,7 +127,7 @@ export function isUrl(str: string): boolean {
  * @param router Optional NextRouter or AppRouterInstance for navigation.
  * @param pathSegment Optional string to replace the last path segment. If undefined, no action is taken.
  */
-export function navigateToPathSegment(router?: NextRouter | AppRouterInstance, pathSegment?: string): void {
+export function navigateToPathSegment(router?: AppRouterInstance, pathSegment?: string): void {
   // Do nothing if pathSegment is undefined
   if (pathSegment === undefined) {
     return;
