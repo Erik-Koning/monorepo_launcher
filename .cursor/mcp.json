@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "vulnerability-server": {
+      "url": "http://localhost:8002/mcp"
+    }
+  }
+}
